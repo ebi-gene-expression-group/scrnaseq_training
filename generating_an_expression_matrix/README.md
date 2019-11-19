@@ -6,4 +6,7 @@ This session will show you the principles of the initial phase of single-cell RN
 
 We've provided you with some example data to play with, stored in what Galaxy calls a 'history'. Access the shared history for this study:
 
-![Getting to the shared data](goto_histories.png) 
+![Getting to the shared data](goto_histories.png)
+
+ 
+![Select the specific history](specific_history.png)
