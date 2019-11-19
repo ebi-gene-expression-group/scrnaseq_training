@@ -10,3 +10,8 @@ We've provided you with some example data to play with, stored in what Galaxy ca
 
  
 ![Select the specific history](specific_history.png)
+
+If you click through to the history, you'll see that we've provided you with two 1 million-read FASTQ files and GTF files related to the gene annotations and to a set of spike-ins. You can then import the history to use yourself:
+
+
+![import the history](import_history.png)
