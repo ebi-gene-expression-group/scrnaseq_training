@@ -53,15 +53,17 @@ If you click through to the history, you'll see that we've provided you with two
 
 ![import the history](import_history.png)
 
-This is what the datasets will look like:
+This is what the your history will look like:
 
 ![see the imported history](imported_history.png)
+
+> Have a look at the files you now have in your history. Which of the FASTQ files do you think contains the barcode sequences?
 
 ## 2. The workflow
 
 Alevin collapses the steps involved in dealing with dscRNA-seq into a single process, so much of what we'll cover is 'plumbing' of intputs, and interpretation. 
 
-### 1. Geneareate a transcriptome index
+### 1. Genereate a transcriptome index
 
 Normally, you would need to generate an index for your transcriptome of interest, containing all sequences likely to be present in your experiment's read data. Generating that index is too time-consuming to do as part of this sesssion, so we'll using using one we made earlier.
 
