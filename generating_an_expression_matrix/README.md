@@ -104,7 +104,11 @@ Now we have everything we need to run Alevin:
  * cDNA reads
  * transcript/ gene mapping
 
-We can now run Alevin. Locate the tool by searching
+We can now run Alevin. Locate the tool by searching with the 'search tools' box. 
+
+![The Alevin tool](alevin.png)
+
+> EXERCISE: Using [Alevin's documentation](https://salmon.readthedocs.io/en/latest/alevin.html), what you know of the protocol used in this experiment (see above), and what you identified by examining the read files, set the options appropriately and run Alevin to produce a matrix market format (MTX) format output. Many options can be left unset.
 
 
 
