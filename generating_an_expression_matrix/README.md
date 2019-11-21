@@ -12,7 +12,7 @@ By the end of this short tutorial should you should understand:
 
  * A fastq file containing cell barcode and unique molecular identifiers (UMIs)
  * A matching fastq file containg biological sequences (cDNAs)
- * An 'index' to map the reads against
+ * A reference transcriptome to map against
  * Necessary information to generate a transcript-to-gene mapping
 
 We'll be using pre-prepared example inputs
@@ -40,7 +40,7 @@ We'll be using a setup based on Galaxy to illustrate the process for teaching pu
 
 ## 1. Example data
 
-We've provided you with some example data to play with, a small subset of the reads in a human dataset of lung carcinoma (see the study in Single Cell Expression Atlas [here](https://www.ebi.ac.uk/gxa/sc/experiments/E-MTAB-6653/results/tsne) and the project submission [here](https://www.ebi.ac.uk/arrayexpress/experiments/E-MTAB-6653/). 
+We've provided you with some example data to play with, a small subset of the reads in a human dataset of lung carcinoma (see the study in Single Cell Expression Atlas [here](https://www.ebi.ac.uk/gxa/sc/experiments/E-MTAB-6653/results/tsne) and the project submission [here](https://www.ebi.ac.uk/arrayexpress/experiments/E-MTAB-6653/). This is a study using the 10X 'v2' chemistry.
 
 Down-sampled reads and some associated annotation stored in what Galaxy calls a 'history'. Access the shared history:
 
@@ -57,15 +57,15 @@ This is what the your history will look like:
 
 ![see the imported history](imported_history.png)
 
-> Have a look at the files you now have in your history. Which of the FASTQ files do you think contains the barcode sequences?
+> EXERCISE: Have a look at the files you now have in your history. Which of the FASTQ files do you think contains the barcode sequences? Given the chemistry this study should have, are the barcode/UMI reads the right length (hint: check https://teichlab.github.io/scg_lib_structs/methods_html/10xChromium3.html)
 
 ## 2. The workflow
 
 Alevin collapses the steps involved in dealing with dscRNA-seq into a single process, so much of what we'll cover is 'plumbing' of intputs, and interpretation. 
 
-### 1. Genereate a transcriptome index
+### 1. Generate a transcriptome index
 
-Normally, you would need to generate an index for your transcriptome of interest, containing all sequences likely to be present in your experiment's read data. Generating that index is too time-consuming to do as part of this sesssion, so we'll using using one we made earlier.
+Normally, you would need to generate an index for your transcriptome of interest, containing all sequences likely to be present in your experiment's read data. Generating that index is too time-consuming to do as part of this sesssion, so we'll using using one we made earlier. But have a look at the fasta format sequences, which are the same as the ones we used to build the index. 
 
 ### 2. Generate a transcript to gene mapping
 
@@ -77,5 +77,39 @@ For this study our reference data contain biological and spike-in sequence data,
 
 Select biological and technical sequences from your history, and use them as inputs. Run the tool and generate your combined annotations.
  
+> EXERCISE: Which of the 'attributes' in the last column of the GTF files contains the transcript and gene identifiers?
+
+Now we have combined annotations, we can parse the GTF file using the [rtracklayer](https://bioconductor.org/packages/release/bioc/html/rtracklayer.html) package in R. We've made a convenience tool in Galaxy to wrap that functionality for you- search for 'GTF2GeneList':
+
+![GTF2GeneList](gtf2genelist.png)
+
+This tool is designed to do a variety of things. For our purposes parameterise like:
+
+ * "Feature type..." : transcript
+ * "Field to place first..." : (use the transcript ID field you identified above)
+ * "Suppress header" : yes
+ * "Comma separated list of field names" : (transcript ID field),(gene ID field)
+ * "Append version to transcript identifiers" : yes 
+ * "Flag mitochondrial features" : no
+ * "Filter a FASTA": no
+
+> EXERCISE: compare the transcript identifiers with the transcript ID values in the GTF, to see why we say 'yes' to the 'transcript identifiers' question
+
+### 3. Running quantification
+
+Now we have everything we need to run Alevin:
+
+ * A Salmon index for our transcriptome
+ * Barcode/ UMI reads
+ * cDNA reads
+ * transcript/ gene mapping
+
+We can now run Alevin. Locate the tool by searching
+
+
+
+
+
+
 
 
