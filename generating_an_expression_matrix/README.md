@@ -122,18 +122,18 @@ The question we're looking to answer here, is: "do we have mostly a have single 
 
 Locate the barcode rank plot by searching for it in the search box. Select 'No' to input MTX, and select the 'raw_cb_frequencies.txt' file you should hae in your history from running Alevin. If you do not, then you didn't select 'dumpFeatures' when you ran Alevin- so go back and try again. Set a title if you wish, but leave other options at defaults. 
 
-[droplet barcode plot tool](droplet_barcode_tool.png)
+![droplet barcode plot tool](droplet_barcode_tool.png)
 
 You'll end up with a plot like: 
 
-[barcode plot from raw barcode counts](barcodes_raw.png)
+![barcode plot from raw barcode counts](barcodes_raw.png)
 
 This is our own formulation of the barcode plot based on a [discussion](https://github.com/COMBINE-lab/salmon/issues/362#issuecomment-490160480) we had with community members. The left hand plot is the main one, showing the counts for individual cell barcodes ranked from high to low. We expect a sharp drop-off between cell-containing droplets and ones that are empty or contain only cell debris. The right hand plot is a density from the first one, and the thresholds are generated either using [dropletUtils](https://bioconductor.org/packages/release/bioc/html/DropletUtils.html) or by the method described in that discussion. We use any of these thresholds to select cells, assuming that anything with fewer counts is not a valid cell. By default, Alevin does something similar, and we can learn something about by plotting just the barcodes Alevin retains. Go back and re-run the droplet barcode plot, this time selecting MTX input (quants_mat.mtx.gz). You will need to select the option to assume cells are by row (more on that later). 
 
-[droplet barcode plot tool](droplet_barcode_tool2.png)
+![droplet barcode plot tool](droplet_barcode_tool2.png)
 
 This will use the actual sum of cell-wise counts produced in Alevin's outputs to make the plot. The output will be like:
 
-[barcode plot from processed barcode counts](barcodes_processed.png)
+![barcode plot from processed barcode counts](barcodes_processed.png)
 
 You should see a completely vertical drop-off where Alevin has trunctated the distribution. 
