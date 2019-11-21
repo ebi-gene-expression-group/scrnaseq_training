@@ -36,7 +36,7 @@ This used to be a complex process involving multiple algorithms, or was performe
 We're going to use Alevin for demonstration purposes, but we do not endorse one method over another.
 
 
-We'll be using a setup based on Galaxy to illustrate the process for teaching purposes. The process is relatively simple given currently available tools, but there are some complexities we'll explain. 
+We'll be using a setup based on Galaxy to illustrate the process for teaching purposes, but all steps are peformed using commodity tools you could run from the command line if you're more comforable there. The logical process we'll be executing is relatively simple given currently available tools, but there are some complexities we'll explain. 
 
 ## 1. Example data
 
@@ -146,13 +146,52 @@ To use emptyDrops effectively, we need to go back and re-run Alevin, stopping it
 
 > EXERCISE: How many cells are in the output now?
 
-Alevin outputs MTX format, which we can pass to the dropletUtils package and run emptyDrops. Unfortunately the matrix is in the wrong orientation for tools expecting files like those produced by 10X software (which dropletUtils does). We need to 'transform' the matrix such that cells are in columns and genes are in rows. We've provided you with a tool for doing this
+Alevin outputs MTX format, which we can pass to the dropletUtils package and run emptyDrops. Unfortunately the matrix is in the wrong orientation for tools expecting files like those produced by 10X software (which dropletUtils does). We need to 'transform' the matrix such that cells are in columns and genes are in rows. We've provided you with a tool for doing this, search for 'salmonKallistoMtxTo10x':
+
+![matrix transformation tool](transform.png)
+
+emptyDrops works with a specific form of R object called a SingleCellExperiment. We need to convert our transformed MTX files into that object, using the DropletUtils Read10x tool:
+
+![reading matrix files into a SingleCellExperiment](read_10x.png)
+
+> EXERCISE: how many cells are in the object now?
+
+Now we have the data in the right format, we can run emptyDrops. Search for it with the tools search box:
+
+![the emptyDrops tool](emptydrops_tool.png)
+
+> EXERCISE: how many cell barcodes remain after the emptyDrops treatment? Why might that be? (hint: is this a real/ complete set of data?). Go back and tweak parameters, re-running the tool. 
+
+Now you have an expression matrix, ready to go, in the SingleCellExperiment format of R. The other trainers will mostly be using a tool called Scanpy, if you wanted to pass this matrix to that tool, you will need to convert to a format called annData, which is a variant of a file format called hdf5. To help you with this we've provided you with a tool called sceasy:
+
+![converting formats with sceasy](sceasy.png)
+
+If you use the options as selected in the image above, you will have an annData object with raw data, ready to be passed to downstream analysis with Scanpy.
+
+# 6. Running the whole workflow
+
+In real life we do not run through analysis steps piecemeal as above, we run workflows in an automated manner. The above workflow is available to you via 'Shared Data' -> 'Workflows', labelled 'Droplet Quantification and preprocessing'. 
+
+![get the whole workflow](workflow1.png)
+
+Click the dropdown next to the workflow to import it. Then go back, select the 'Workflow' tab and click on the workflow. This will open the workflow editor and you can overview what we did above:
+
+![the workflow editor](workflow2.png)
+
+If you click the play icon you get an interface allowing you to execute the whole workflow. Try it out:
+
+![the workflow runner](workflow3.png)
 
 
-Once that translation has been done, we can pass to the read10X method of dropletUtils and from there to emptyDrops. 
+# 7. Summary
 
+You've reached then end of this session. We have:
 
-
+ * Taken raw read data and annotations and necessary input files for quantification.
+ * Run Alevin in two different parameterisations, both allowing Alevin to make its own calls on what constitutes empty droplets, and applying emptyDrops instead.
+ * Deployed barcode rank plots as a way of quickly assessing the signal present in droplet datasets. Further assessments of quality are the subject of subsequent sections of this course.
+ * Applied the necessary conversion to pass these data to downstream processes. 
+ * Run a workflow of all steps at once.
 
 # References
 
