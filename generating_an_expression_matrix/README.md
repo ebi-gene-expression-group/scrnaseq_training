@@ -112,7 +112,7 @@ We can now run Alevin. Locate the tool by searching with the 'search tools' box.
 
 Becuase we're only using a million or so reads Alevin will run quickly, taking a few minutes or so to run.
 
-> EXERCISE: Once you've run Alevin: what's the mapping rate?
+> EXERCISE: Once you've run Alevin: 1) what's the mapping rate? 2) how many cells are present in the output.
 
 ### 4. Basic QC with barcode rank plots
 
@@ -136,4 +136,27 @@ This will use the actual sum of cell-wise counts produced in Alevin's outputs to
 
 ![barcode plot from processed barcode counts](barcodes_processed.png)
 
-You should see a completely vertical drop-off where Alevin has trunctated the distribution. 
+You should see a completely vertical drop-off where Alevin has trunctated the distribution.
+
+In experiments with relatively simple characteristics, this 'knee detection' method works relatively well. But some populations present difficulties due to sub-populations of small cells that cannot be distinguished from empty droplets based purely on counts by barcode. The [emptyDrops](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1662-y) method has become a popular way of dealing with this. emptyDrops still retains barcodes with very high counts, but also adds in barcodes that can be statistically distinguished from the ambient profiles, even if total counts are similar.
+
+## 5. Apply emptyDrops to remove emtpy cells
+
+To use emptyDrops effectively, we need to go back and re-run Alevin, stopping it from applying it's own thresholds. If you look under 'optional commands' you will see 'keepCBFraction'. Set this to 1 to retain all cell barcodes. Then set freqThreshold to 3: this will only remove cell barcodes with a frequency of less than 3, a low bar to pass but useful way of avoiding processing a bunch of almost certainly emtpy barcodes. Trigger the Alevin re-run.
+
+> EXERCISE: How many cells are in the output now?
+
+Alevin outputs MTX format, which we can pass to the dropletUtils package and run emptyDrops. Unfortunately the matrix is in the wrong orientation for tools expecting files like those produced by 10X software (which dropletUtils does). We need to 'transform' the matrix such that cells are in columns and genes are in rows. We've provided you with a tool for doing this
+
+
+Once that translation has been done, we can pass to the read10X method of dropletUtils and from there to emptyDrops. 
+
+
+
+
+# References
+
+ - Lun ATL, Riesenfeld S, Andrews T, et al. EmptyDrops: distinguishing cells from empty droplets in droplet-based single-cell RNA sequencing data. Genome Biol. 2019;20(1):63.
+ - Melsted P, Ntranos V, Pachter L. The Barcode, UMI, Set format and BUStools. Bioinformatics. 2019;
+ - Srivastava A, Malik L, Smith T, Sudbery I, Patro R. Alevin efficiently estimates accurate gene abundances from dscRNA-seq data. Genome Biol. 2019;20(1):65.
+ - Zheng GX, Terry JM, Belgrader P, et al. Massively parallel digital transcriptional profiling of single cells. Nat Commun. 2017;8:14049.
