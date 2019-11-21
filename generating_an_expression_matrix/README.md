@@ -140,9 +140,9 @@ You should see a completely vertical drop-off where Alevin has trunctated the di
 
 In experiments with relatively simple characteristics, this 'knee detection' method works relatively well. But some populations present difficulties due to sub-populations of small cells that cannot be distinguished from empty droplets based purely on counts by barcode. Some libraries produce multiple 'knees' for multiple sub-populations. The [emptyDrops](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1662-y) method has become a popular way of dealing with this. emptyDrops still retains barcodes with very high counts, but also adds in barcodes that can be statistically distinguished from the ambient profiles, even if total counts are similar.
 
-## 5. Apply emptyDrops to remove emtpy cells
+## 5. Apply emptyDrops to remove empty cells
 
-To use emptyDrops effectively, we need to go back and re-run Alevin, stopping it from applying it's own thresholds. If you look under 'optional commands' you will see 'keepCBFraction'. Set this to 1 to retain all cell barcodes. Then set freqThreshold to 3: this will only remove cell barcodes with a frequency of less than 3, a low bar to pass but useful way of avoiding processing a bunch of almost certainly emtpy barcodes. Trigger the Alevin re-run.
+To use emptyDrops effectively, we need to go back and re-run Alevin, stopping it from applying it's own thresholds. If you look under 'optional commands' you will see 'keepCBFraction'. Set this to 1 to retain all cell barcodes. Then set freqThreshold to 3: this will only remove cell barcodes with a frequency of less than 3, a low bar to pass but useful way of avoiding processing a bunch of almost certainly empty barcodes. Trigger the Alevin re-run.
 
 > EXERCISE: How many cells are in the output now?
 
