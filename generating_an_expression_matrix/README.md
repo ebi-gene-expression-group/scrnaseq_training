@@ -108,12 +108,32 @@ We can now run Alevin. Locate the tool by searching with the 'search tools' box.
 
 ![The Alevin tool](alevin.png)
 
-> EXERCISE: Using [Alevin's documentation](https://salmon.readthedocs.io/en/latest/alevin.html), what you know of the protocol used in this experiment (see above), and what you identified by examining the read files, set the options appropriately and run Alevin to produce a matrix market format (MTX) format output. Many options can be left unset.
+> EXERCISE: Using [Alevin's documentation](https://salmon.readthedocs.io/en/latest/alevin.html), what you know of the protocol used in this experiment (see above), and what you identified by examining the read files, set the options appropriately and run Alevin to produce a matrix market format (MTX) format output. Try to determine the correct library options yourself, but do activate MTX output, select 'dumpFeatures' and do click 'Retrieve all output files'. Many options can be left unset.
 
+Becuase we're only using a million or so reads Alevin will run quickly, taking a few minutes or so to run.
 
+> EXERCISE: Once you've run Alevin: what's the mapping rate?
 
+### 4. Basic QC with barcode rank plots
 
+Congratulations- you've made an expression matrix! We could almost stop here. But it's sensible to do some basic QC, and one of the things we can do is look at a barcode rank plot.
 
+The question we're looking to answer here, is: "do we have mostly a have single cell per droplet"? That's what experimenters are normally aiming for, but it's not entirely straightforward to get exactly one cell per droplet. Sometimes almost no cells make it into droplets, other times we have too many droplets with two or more cells. But at a minimum, we should easily be able to distiguish droplets with cells from those without. 
 
+Locate the barcode rank plot by searching for it in the search box. Select 'No' to input MTX, and select the 'raw_cb_frequencies.txt' file you should hae in your history from running Alevin. If you do not, then you didn't select 'dumpFeatures' when you ran Alevin- so go back and try again. Set a title if you wish, but leave other options at defaults. 
 
+[droplet barcode plot tool](droplet_barcode_tool.png)
 
+You'll end up with a plot like: 
+
+[barcode plot from raw barcode counts](barcodes_raw.png)
+
+This is our own formulation of the barcode plot based on a [discussion](https://github.com/COMBINE-lab/salmon/issues/362#issuecomment-490160480) we had with community members. The left hand plot is the main one, showing the counts for individual cell barcodes ranked from high to low. We expect a sharp drop-off between cell-containing droplets and ones that are empty or contain only cell debris. The right hand plot is a density from the first one, and the thresholds are generated either using [dropletUtils](https://bioconductor.org/packages/release/bioc/html/DropletUtils.html) or by the method described in that discussion. We use any of these thresholds to select cells, assuming that anything with fewer counts is not a valid cell. By default, Alevin does something similar, and we can learn something about by plotting just the barcodes Alevin retains. Go back and re-run the droplet barcode plot, this time selecting MTX input (quants_mat.mtx.gz). You will need to select the option to assume cells are by row (more on that later). 
+
+[droplet barcode plot tool](droplet_barcode_tool2.png)
+
+This will use the actual sum of cell-wise counts produced in Alevin's outputs to make the plot. The output will be like:
+
+[barcode plot from processed barcode counts](barcodes_processed.png)
+
+You should see a completely vertical drop-off where Alevin has trunctated the distribution. 
