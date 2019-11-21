@@ -40,7 +40,7 @@ We'll be using a setup based on Galaxy to illustrate the process for teaching pu
 
 ## 1. Example data
 
-We've provided you with some example data to play with, a small subset of the reads in a human dataset of lung carcinoma (see the study in Single Cell Expression Atlas [here](https://www.ebi.ac.uk/gxa/sc/experiments/E-MTAB-6653/results/tsne) and the project submission [here](https://www.ebi.ac.uk/arrayexpress/experiments/E-MTAB-6653/). This is a study using the 10X 'v2' chemistry.
+We've provided you with some example data to play with, a small subset of the reads in a human dataset of lung carcinoma (see the study in Single Cell Expression Atlas [here](https://www.ebi.ac.uk/gxa/sc/experiments/E-MTAB-6653/results/tsne) and the project submission [here](https://www.ebi.ac.uk/arrayexpress/experiments/E-MTAB-6653/)). This is a study using the 10X 'v2' chemistry.
 
 Down-sampled reads and some associated annotation stored in what Galaxy calls a 'history'. Access the shared history:
 
@@ -57,7 +57,7 @@ This is what the your history will look like:
 
 ![see the imported history](imported_history.png)
 
-> EXERCISE: Have a look at the files you now have in your history. Which of the FASTQ files do you think contains the barcode sequences? Given the chemistry this study should have, are the barcode/UMI reads the right length (hint: check https://teichlab.github.io/scg_lib_structs/methods_html/10xChromium3.html)
+> EXERCISE: Have a look at the files you now have in your history. Which of the FASTQ files do you think contains the barcode sequences? Given the chemistry this study should have, are the barcode/UMI reads the correct length? (hint: check https://teichlab.github.io/scg_lib_structs/methods_html/10xChromium3.html)
 
 ## 2. The workflow
 
@@ -120,7 +120,7 @@ Congratulations- you've made an expression matrix! We could almost stop here. Bu
 
 The question we're looking to answer here, is: "do we have mostly a have single cell per droplet"? That's what experimenters are normally aiming for, but it's not entirely straightforward to get exactly one cell per droplet. Sometimes almost no cells make it into droplets, other times we have too many droplets with two or more cells. But at a minimum, we should easily be able to distiguish droplets with cells from those without. 
 
-Locate the barcode rank plot by searching for it in the search box. Select 'No' to input MTX, and select the 'raw_cb_frequencies.txt' file you should hae in your history from running Alevin. If you do not, then you didn't select 'dumpFeatures' when you ran Alevin- so go back and try again. Set a title if you wish, but leave other options at defaults. 
+Locate the barcode rank plot tool by searching for it in the search box. Select 'No' to input MTX, and select the 'raw_cb_frequencies.txt' file you should have in your history from running Alevin. If you do not, then you didn't select 'dumpFeatures' when you ran Alevin- so go back and try again. Set a title if you wish, but leave other options at defaults. 
 
 ![droplet barcode plot tool](droplet_barcode_tool.png)
 
@@ -128,7 +128,7 @@ You'll end up with a plot like:
 
 ![barcode plot from raw barcode counts](barcodes_raw.png)
 
-This is our own formulation of the barcode plot based on a [discussion](https://github.com/COMBINE-lab/salmon/issues/362#issuecomment-490160480) we had with community members. The left hand plot is the main one, showing the counts for individual cell barcodes ranked from high to low. We expect a sharp drop-off between cell-containing droplets and ones that are empty or contain only cell debris. The right hand plot is a density from the first one, and the thresholds are generated either using [dropletUtils](https://bioconductor.org/packages/release/bioc/html/DropletUtils.html) or by the method described in that discussion. We use any of these thresholds to select cells, assuming that anything with fewer counts is not a valid cell. By default, Alevin does something similar, and we can learn something about by plotting just the barcodes Alevin retains. Go back and re-run the droplet barcode plot, this time selecting MTX input (quants_mat.mtx.gz). You will need to select the option to assume cells are by row (more on that later). 
+This is our own formulation of the barcode plot based on a [discussion](https://github.com/COMBINE-lab/salmon/issues/362#issuecomment-490160480) we had with community members. The left hand plot is the main one, showing the counts for individual cell barcodes ranked from high to low. We expect a sharp drop-off between cell-containing droplets and ones that are empty or contain only cell debris. The right hand plot is a density from the first one, and the thresholds are generated either using [dropletUtils](https://bioconductor.org/packages/release/bioc/html/DropletUtils.html) or by the method described in that discussion. We could use any of these thresholds to select cells, assuming that anything with fewer counts is not a valid cell. By default, Alevin does something similar, and we can learn something about by plotting just the barcodes Alevin retains. Go back and re-run the droplet barcode plot, this time selecting MTX input (quants_mat.mtx.gz). You will need to select the option to assume cells are by row (more on that later). 
 
 ![droplet barcode plot tool](droplet_barcode_tool2.png)
 
@@ -138,7 +138,7 @@ This will use the actual sum of cell-wise counts produced in Alevin's outputs to
 
 You should see a completely vertical drop-off where Alevin has trunctated the distribution.
 
-In experiments with relatively simple characteristics, this 'knee detection' method works relatively well. But some populations present difficulties due to sub-populations of small cells that cannot be distinguished from empty droplets based purely on counts by barcode. The [emptyDrops](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1662-y) method has become a popular way of dealing with this. emptyDrops still retains barcodes with very high counts, but also adds in barcodes that can be statistically distinguished from the ambient profiles, even if total counts are similar.
+In experiments with relatively simple characteristics, this 'knee detection' method works relatively well. But some populations present difficulties due to sub-populations of small cells that cannot be distinguished from empty droplets based purely on counts by barcode. Some libraries produce multiple 'knees' for multiple sub-populations. The [emptyDrops](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1662-y) method has become a popular way of dealing with this. emptyDrops still retains barcodes with very high counts, but also adds in barcodes that can be statistically distinguished from the ambient profiles, even if total counts are similar.
 
 ## 5. Apply emptyDrops to remove emtpy cells
 
@@ -148,13 +148,11 @@ To use emptyDrops effectively, we need to go back and re-run Alevin, stopping it
 
 Alevin outputs MTX format, which we can pass to the dropletUtils package and run emptyDrops. Unfortunately the matrix is in the wrong orientation for tools expecting files like those produced by 10X software (which dropletUtils does). We need to 'transform' the matrix such that cells are in columns and genes are in rows. We've provided you with a tool for doing this, search for 'salmonKallistoMtxTo10x':
 
-![matrix transformation tool](transform.png)
+![matrix transformation tool](transform_tool.png)
 
-emptyDrops works with a specific form of R object called a SingleCellExperiment. We need to convert our transformed MTX files into that object, using the DropletUtils Read10x tool:
+emptyDrops works with a specific form of R object called a SingleCellExperiment. We need to convert our transformed MTX files into that form, using the DropletUtils Read10x tool:
 
 ![reading matrix files into a SingleCellExperiment](read_10x.png)
-
-> EXERCISE: how many cells are in the object now?
 
 Now we have the data in the right format, we can run emptyDrops. Search for it with the tools search box:
 
@@ -162,7 +160,7 @@ Now we have the data in the right format, we can run emptyDrops. Search for it w
 
 > EXERCISE: how many cell barcodes remain after the emptyDrops treatment? Why might that be? (hint: is this a real/ complete set of data?). Go back and tweak parameters, re-running the tool. 
 
-Now you have an expression matrix, ready to go, in the SingleCellExperiment format of R. The other trainers will mostly be using a tool called Scanpy, if you wanted to pass this matrix to that tool, you will need to convert to a format called annData, which is a variant of a file format called hdf5. To help you with this we've provided you with a tool called sceasy:
+Assuming you've complete the last exercise, you have an expression matrix ready to go, in the SingleCellExperiment format of R. The other trainers will mostly be using a tool called Scanpy. They won't be using these dummy data, but if you wanted to pass this matrix to that tool, you would need to convert to a format called annData, which is a variant of a file format called hdf5. To help you with this we've provided you with a tool called sceasy:
 
 ![converting formats with sceasy](sceasy.png)
 
@@ -170,7 +168,7 @@ If you use the options as selected in the image above, you will have an annData 
 
 # 6. Running the whole workflow
 
-In real life we do not run through analysis steps piecemeal as above, we run workflows in an automated manner. The above workflow is available to you via 'Shared Data' -> 'Workflows', labelled 'Droplet Quantification and preprocessing'. 
+In real life we do not run through analysis steps piecemeal as above, we run workflows in an automated manner. A complete workflow composed of the above steps is available to you via 'Shared Data' -> 'Workflows', labelled 'Droplet Quantification and preprocessing'. 
 
 ![get the whole workflow](workflow1.png)
 
