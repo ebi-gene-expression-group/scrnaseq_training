@@ -162,6 +162,8 @@ Now we have the data in the right format, we can run emptyDrops. Search for it w
 
 ![the emptyDrops tool](emptydrops_tool.png)
 
+Be sure to select 'yes' when asked 'Should barcodes estimated to have no cells be removed from the output object?'.
+
 > EXERCISE: how many cell barcodes remain after the emptyDrops treatment? Why might that be? (hint: is this a real/ complete set of data?). Go back and tweak parameters, re-running the tool. 
 
 Assuming you've completed the last exercise, you have an expression matrix ready to go, in the SingleCellExperiment format of R. The other trainers will mostly be using a tool called Scanpy. They won't be using these dummy data, but if you wanted to pass this matrix to that tool, you would need to convert to a format called annData, which is a variant of a file format called hdf5. To help you with this we've provided you with a tool called sceasy:
