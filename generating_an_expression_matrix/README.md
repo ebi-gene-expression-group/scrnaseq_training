@@ -42,14 +42,14 @@ We'll be using a setup based on Galaxy to illustrate the process for teaching pu
 
 We've provided you with some example data to play with, a small subset of the reads in a human dataset of lung carcinoma (see the study in Single Cell Expression Atlas [here](https://www.ebi.ac.uk/gxa/sc/experiments/E-MTAB-6653/results/tsne) and the project submission [here](https://www.ebi.ac.uk/arrayexpress/experiments/E-MTAB-6653/)). This is a study using the 10X 'v2' chemistry.
 
-Down-sampled reads and some associated annotation stored in what Galaxy calls a 'history'. Access the shared history:
+Down-sampled reads and some associated annotation are provided for you in what Galaxy calls a 'history'. Access the shared history:
 
 ![Getting to the shared data](goto_histories.png)
 
  
 ![Select the specific history](specific_history.png)
 
-If you click through to the history, you'll see that we've provided you with two 1 million-read FASTQ files and GTF files related to the gene annotations and to a set of spike-ins. You can then import the history to use yourself:
+If you click through to the history itself, you'll see that we've provided you with two 1 million-read FASTQ files, a transcriptome in FASTA format and GTF files related to the gene annotations and to a set of spike-ins. You can then import the history to use yourself:
 
 ![import the history](import_history.png)
 
