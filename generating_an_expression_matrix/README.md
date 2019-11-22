@@ -152,6 +152,8 @@ Alevin outputs MTX format, which we can pass to the dropletUtils package and run
 
 ![matrix transformation tool](transform_tool.png)
 
+Run this tool, supplying the inputs specified in the help text. The output will be a matrix in the correct orientation to pass to the next step. 
+
 emptyDrops works with a specific form of R object called a SingleCellExperiment. We need to convert our transformed MTX files into that form, using the DropletUtils Read10x tool:
 
 ![reading matrix files into a SingleCellExperiment](read_10x.png)
@@ -162,7 +164,7 @@ Now we have the data in the right format, we can run emptyDrops. Search for it w
 
 > EXERCISE: how many cell barcodes remain after the emptyDrops treatment? Why might that be? (hint: is this a real/ complete set of data?). Go back and tweak parameters, re-running the tool. 
 
-Assuming you've complete the last exercise, you have an expression matrix ready to go, in the SingleCellExperiment format of R. The other trainers will mostly be using a tool called Scanpy. They won't be using these dummy data, but if you wanted to pass this matrix to that tool, you would need to convert to a format called annData, which is a variant of a file format called hdf5. To help you with this we've provided you with a tool called sceasy:
+Assuming you've completed the last exercise, you have an expression matrix ready to go, in the SingleCellExperiment format of R. The other trainers will mostly be using a tool called Scanpy. They won't be using these dummy data, but if you wanted to pass this matrix to that tool, you would need to convert to a format called annData, which is a variant of a file format called hdf5. To help you with this we've provided you with a tool called sceasy:
 
 ![converting formats with sceasy](sceasy.png)
 
@@ -185,7 +187,7 @@ If you click the play icon you get an interface allowing you to execute the whol
 
 # 7. Summary
 
-You've reached then end of this session. We have:
+You've reached the end of this session. We have:
 
  * Taken raw read data and annotations and necessary input files for quantification.
  * Run Alevin in two different parameterisations, both allowing Alevin to make its own calls on what constitutes empty droplets, and applying emptyDrops instead.
