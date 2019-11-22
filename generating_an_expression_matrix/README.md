@@ -152,7 +152,7 @@ Alevin outputs MTX format, which we can pass to the dropletUtils package and run
 
 ![matrix transformation tool](transform_tool.png)
 
-Run this tool, supplying the inputs specified in the help text. The output will be a matrix in the correct orientation to pass to the next step. 
+Run this tool, supplying the inputs specified in the help text (make sure you don't mix files from different Alevin runs)). The output will be a matrix in the correct orientation to pass to the next step. 
 
 emptyDrops works with a specific form of R object called a SingleCellExperiment. We need to convert our transformed MTX files into that form, using the DropletUtils Read10x tool:
 
