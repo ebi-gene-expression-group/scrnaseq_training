@@ -61,7 +61,7 @@ This is what the your history will look like:
 
 ## 2. The workflow
 
-Alevin collapses the steps involved in dealing with dscRNA-seq into a single process, so much of what we'll cover is 'plumbing' of intputs, and interpretation. 
+Alevin collapses the steps involved in dealing with dscRNA-seq into a single process, so much of what we'll cover is 'plumbing' of inputs, and interpretation. 
 
 ### 1. Generate a transcriptome index
 
@@ -69,9 +69,11 @@ Normally, you would need to generate an index for your transcriptome of interest
 
 ### 2. Generate a transcript to gene mapping
 
-To generate gene-level quantifications based on transcriptome quantification, Alevin and similar tools require a conversion between transcript and gene identifiers, which we can derive from the annotations available in genome resources such as Ensembl. The transcripts in this list need to match the ones we used in the sequences reference. In your example data you will see 'Homo_sapiens.GRCh38.95.gtf.gz', which is the human reference annotations as retrieved from Ensembl in GTF format, and a transcript-level descritption of the ERCC spike-ins (also in GTF format). 
+To generate gene-level quantifications based on transcriptome quantification, Alevin and similar tools require a conversion between transcript and gene identifiers, which we can derive from the annotations available in genome resources such as Ensembl. The transcripts in this list need to match the ones we used in the sequences reference. The study we're working with here added spike-ins to their samples, so when we created the index above in preparation for this tutorial, we combined sequence information for the biological sequences and the spike-ins. So now we need to generate a transcript to gene mapping with both types of sequence.
 
-For this study our reference data contain biological and spike-in sequence data, so before we generate our mapping file we need to combine the respective sets of annotation, which we can do using a 'concatenate' tool found in Galaxy under 'Text Manipulation':
+In your example data you will see 'Homo_sapiens.GRCh38.95.gtf.gz', which is the human reference annotations as retrieved from Ensembl in GTF format, and a transcript-level description of the ERCC spike-ins (also in GTF format). We will use these to generate the transcript/ gene mapping, first by combining the two types of annotation and second by passing that information to a tool that extracts just the identifiers we need:
+
+Find the 'concatenate' tool in Galaxy under 'Text Manipulation':
 
 ![concatenating annotation files](concatenate.png)
 
@@ -93,7 +95,7 @@ This tool is designed to do a variety of things. For our purposes parameterise l
  * "Flag mitochondrial features" : no
  * "Filter a FASTA": no
 
-> EXERCISE: compare the transcript identifiers with the transcript ID values in the GTF, to see why we say 'yes' to the 'transcript identifiers' question
+> EXERCISE: compare the transcript identifiers you'll find in the FASTA file you were given at the start with the transcript ID values in the GTF, to see why we say 'yes' to the 'transcript identifiers' question
 
 ### 3. Running quantification
 
@@ -110,9 +112,9 @@ We can now run Alevin. Locate the tool by searching with the 'search tools' box.
 
 > EXERCISE: Using [Alevin's documentation](https://salmon.readthedocs.io/en/latest/alevin.html), what you know of the protocol used in this experiment (see above), and what you identified by examining the read files, set the options appropriately and run Alevin to produce a matrix market format (MTX) format output. Try to determine the correct library options yourself, but do activate MTX output, select 'dumpFeatures' and do click 'Retrieve all output files'. Many options can be left unset.
 
-Becuase we're only using a million or so reads Alevin will run quickly, taking a few minutes or so to run.
+Becuase we're only using a million or so reads Alevin will run quickly, taking a few minutes or so to run. Alevin produces many file outputs not all of which we'll use. You can refer to the [Alevin documentation](https://salmon.readthedocs.io/en/latest/alevin.html) if you're curious what they all are, but we're most interested in the matrix itself (quants_mat.mtx.gz), the row (cell/ barcode) identifiers (quants_mat_rows.txt) and the column (gene) labels (quants_mat_cols.txt). 
 
-> EXERCISE: Once you've run Alevin: 1) what's the mapping rate? 2) how many cells are present in the output.
+> EXERCISE: Once you've run Alevin, look through the files and see if you can find: 1) what's the mapping rate? 2) how many cells are present in the output.
 
 ### 4. Basic QC with barcode rank plots
 
