@@ -1,0 +1,870 @@
+{
+    "a_galaxy_workflow": "true", 
+    "annotation": "", 
+    "format-version": "0.1", 
+    "name": "Droplet quantification and preprocessing", 
+    "steps": {
+        "0": {
+            "annotation": "", 
+            "content_id": null, 
+            "errors": null, 
+            "id": 0, 
+            "input_connections": {}, 
+            "inputs": [], 
+            "label": "Spikes GT", 
+            "name": "Input dataset", 
+            "outputs": [], 
+            "position": {
+                "left": 200, 
+                "top": 203
+            }, 
+            "tool_id": null, 
+            "tool_state": "{}", 
+            "tool_version": null, 
+            "type": "data_input", 
+            "uuid": "83fb44ab-41d0-4236-8de5-f114557ced87", 
+            "workflow_outputs": [
+                {
+                    "label": null, 
+                    "output_name": "output", 
+                    "uuid": "29e92517-3979-4193-b285-99c729d39333"
+                }
+            ]
+        }, 
+        "1": {
+            "annotation": "", 
+            "content_id": null, 
+            "errors": null, 
+            "id": 1, 
+            "input_connections": {}, 
+            "inputs": [], 
+            "label": "cDNA GTF", 
+            "name": "Input dataset", 
+            "outputs": [], 
+            "position": {
+                "left": 200, 
+                "top": 291
+            }, 
+            "tool_id": null, 
+            "tool_state": "{}", 
+            "tool_version": null, 
+            "type": "data_input", 
+            "uuid": "2e501c87-9062-4a19-91d5-19942d21f7e4", 
+            "workflow_outputs": [
+                {
+                    "label": null, 
+                    "output_name": "output", 
+                    "uuid": "1b391320-2bd3-40b0-8a55-1d5267f26314"
+                }
+            ]
+        }, 
+        "2": {
+            "annotation": "", 
+            "content_id": null, 
+            "errors": null, 
+            "id": 2, 
+            "input_connections": {}, 
+            "inputs": [], 
+            "label": "Barcodes fastq", 
+            "name": "Input dataset", 
+            "outputs": [], 
+            "position": {
+                "left": 200, 
+                "top": 379
+            }, 
+            "tool_id": null, 
+            "tool_state": "{}", 
+            "tool_version": null, 
+            "type": "data_input", 
+            "uuid": "fd8c8f58-342b-479d-9454-42f29bd5262a", 
+            "workflow_outputs": [
+                {
+                    "label": null, 
+                    "output_name": "output", 
+                    "uuid": "c64c5b12-6420-4a08-a8ad-8b11a820ff82"
+                }
+            ]
+        }, 
+        "3": {
+            "annotation": "", 
+            "content_id": null, 
+            "errors": null, 
+            "id": 3, 
+            "input_connections": {}, 
+            "inputs": [], 
+            "label": "cDNA fastq", 
+            "name": "Input dataset", 
+            "outputs": [], 
+            "position": {
+                "left": 200, 
+                "top": 467
+            }, 
+            "tool_id": null, 
+            "tool_state": "{}", 
+            "tool_version": null, 
+            "type": "data_input", 
+            "uuid": "70ed7234-6a86-422c-9aac-a0c21acc4dfb", 
+            "workflow_outputs": [
+                {
+                    "label": null, 
+                    "output_name": "output", 
+                    "uuid": "727d5025-935d-4efa-b1eb-59b08d6c4bcc"
+                }
+            ]
+        }, 
+        "4": {
+            "annotation": "", 
+            "content_id": "cat1", 
+            "errors": null, 
+            "id": 4, 
+            "input_connections": {
+                "input1": {
+                    "id": 0, 
+                    "output_name": "output"
+                }, 
+                "queries_0|input2": {
+                    "id": 1, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Concatenate datasets", 
+            "outputs": [
+                {
+                    "name": "out_file1", 
+                    "type": "input"
+                }
+            ], 
+            "position": {
+                "left": 444, 
+                "top": 203
+            }, 
+            "post_job_actions": {}, 
+            "tool_id": "cat1", 
+            "tool_state": "{\"__page__\": null, \"__rerun_remap_job_id__\": null, \"input1\": \"{\\\"__class__\\\": \\\"ConnectedValue\\\"}\", \"queries\": \"[{\\\"__index__\\\": 0, \\\"input2\\\": {\\\"__class__\\\": \\\"ConnectedValue\\\"}}]\"}", 
+            "tool_version": "1.0.0", 
+            "type": "tool", 
+            "uuid": "285f1737-9730-4f23-89d6-6de1c8472d7a", 
+            "workflow_outputs": [
+                {
+                    "label": null, 
+                    "output_name": "out_file1", 
+                    "uuid": "b76de64d-4014-45f0-bb02-8b35a5c0ec40"
+                }
+            ]
+        }, 
+        "5": {
+            "annotation": "", 
+            "content_id": "toolshed.g2.bx.psu.edu/repos/ebi-gxa/gtf2gene_list/_ensembl_gtf2gene_list/1.42.1+galaxy5", 
+            "errors": null, 
+            "id": 5, 
+            "input_connections": {
+                "gtf_input": {
+                    "id": 4, 
+                    "output_name": "out_file1"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "GTF2GeneList", 
+            "outputs": [
+                {
+                    "name": "feature_annotation", 
+                    "type": "tsv"
+                }
+            ], 
+            "position": {
+                "left": 724, 
+                "top": 203
+            }, 
+            "post_job_actions": {
+                "RenameDatasetActionfeature_annotation": {
+                    "action_arguments": {
+                        "newname": "transcript to gene map"
+                    }, 
+                    "action_type": "RenameDatasetAction", 
+                    "output_name": "feature_annotation"
+                }
+            }, 
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/ebi-gxa/gtf2gene_list/_ensembl_gtf2gene_list/1.42.1+galaxy5", 
+            "tool_shed_repository": {
+                "changeset_revision": "00ee933b08fd", 
+                "name": "gtf2gene_list", 
+                "owner": "ebi-gxa", 
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            }, 
+            "tool_state": "{\"__page__\": null, \"first_field\": \"\\\"transcript_id\\\"\", \"feature_type\": \"\\\"transcript\\\"\", \"fields\": \"\\\"transcript_id,gene_id\\\"\", \"__rerun_remap_job_id__\": null, \"mito\": \"{\\\"__current_case__\\\": 1, \\\"mark_mito\\\": \\\"false\\\"}\", \"version_transcripts\": \"\\\"true\\\"\", \"cdnas\": \"{\\\"__current_case__\\\": 1, \\\"filter_cdnas\\\": \\\"false\\\"}\", \"noheader\": \"\\\"true\\\"\", \"gtf_input\": \"{\\\"__class__\\\": \\\"ConnectedValue\\\"}\"}", 
+            "tool_version": "1.42.1+galaxy5", 
+            "type": "tool", 
+            "uuid": "9c34c133-17d5-41a2-aa57-8b16e07776fa", 
+            "workflow_outputs": [
+                {
+                    "label": null, 
+                    "output_name": "feature_annotation", 
+                    "uuid": "33bbfd75-e5d2-4ced-965b-8f23ce610a4a"
+                }
+            ]
+        }, 
+        "6": {
+            "annotation": "", 
+            "content_id": "toolshed.g2.bx.psu.edu/repos/bgruening/alevin/alevin/0.14.1.2+galaxy1", 
+            "errors": null, 
+            "id": 6, 
+            "input_connections": {
+                "pairstraight|file1": {
+                    "id": 2, 
+                    "output_name": "output"
+                }, 
+                "pairstraight|file2": {
+                    "id": 3, 
+                    "output_name": "output"
+                }, 
+                "tgmap": {
+                    "id": 5, 
+                    "output_name": "feature_annotation"
+                }
+            }, 
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Alevin", 
+                    "name": "optional"
+                }, 
+                {
+                    "description": "runtime parameter for tool Alevin", 
+                    "name": "optional"
+                }, 
+                {
+                    "description": "runtime parameter for tool Alevin", 
+                    "name": "optional"
+                }
+            ], 
+            "label": null, 
+            "name": "Alevin", 
+            "outputs": [
+                {
+                    "name": "quants_mat.mtx.gz", 
+                    "type": "mtx"
+                }, 
+                {
+                    "name": "raw_cb_frequency.txt", 
+                    "type": "txt"
+                }, 
+                {
+                    "name": "quants_mat_cols.txt", 
+                    "type": "txt"
+                }, 
+                {
+                    "name": "quants_mat_rows.txt", 
+                    "type": "txt"
+                }, 
+                {
+                    "name": "quants_tier_mat.gz", 
+                    "type": "mtx"
+                }, 
+                {
+                    "name": "alevin.log", 
+                    "type": "txt"
+                }, 
+                {
+                    "name": "featureDump.txt", 
+                    "type": "txt"
+                }, 
+                {
+                    "name": "whitelist.txt", 
+                    "type": "txt"
+                }, 
+                {
+                    "name": "alevinmeta_info.json", 
+                    "type": "json"
+                }, 
+                {
+                    "name": "ambig_info.tsv", 
+                    "type": "tsv"
+                }, 
+                {
+                    "name": "meta_info.json", 
+                    "type": "json"
+                }, 
+                {
+                    "name": "expected_bias.gz", 
+                    "type": "txt"
+                }, 
+                {
+                    "name": "observed_bias.gz", 
+                    "type": "txt"
+                }, 
+                {
+                    "name": "observed_bias_3p.gz", 
+                    "type": "txt"
+                }, 
+                {
+                    "name": "flenDist.txt", 
+                    "type": "txt"
+                }, 
+                {
+                    "name": "salmon_quant.log", 
+                    "type": "txt"
+                }
+            ], 
+            "position": {
+                "left": 1052, 
+                "top": 203
+            }, 
+            "post_job_actions": {
+                "HideDatasetActionalevin.log": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "alevin.log"
+                }, 
+                "HideDatasetActionambig_info.tsv": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "ambig_info.tsv"
+                }, 
+                "HideDatasetActionexpected_bias.gz": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "expected_bias.gz"
+                }, 
+                "HideDatasetActionflenDist.txt": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "flenDist.txt"
+                }, 
+                "HideDatasetActionmeta_info.json": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "meta_info.json"
+                }, 
+                "HideDatasetActionobserved_bias.gz": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "observed_bias.gz"
+                }, 
+                "HideDatasetActionobserved_bias_3p.gz": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "observed_bias_3p.gz"
+                }, 
+                "HideDatasetActionwhitelist.txt": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "whitelist.txt"
+                }
+            }, 
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/bgruening/alevin/alevin/0.14.1.2+galaxy1", 
+            "tool_shed_repository": {
+                "changeset_revision": "917f8e439160", 
+                "name": "alevin", 
+                "owner": "bgruening", 
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            }, 
+            "tool_state": "{\"refTranscriptSource\": \"{\\\"TranscriptSource\\\": \\\"indexed\\\", \\\"__current_case__\\\": 0, \\\"index\\\": \\\"cDNAs_Homo_sapiens.GRCh38.95_spikes_ERCC92_GTF_filtered_k21\\\"}\", \"protocol\": \"\\\"--chromium\\\"\", \"allout\": \"\\\"true\\\"\", \"__page__\": null, \"tgmap\": \"{\\\"__class__\\\": \\\"ConnectedValue\\\"}\", \"__rerun_remap_job_id__\": null, \"optional\": \"{\\\"dumpBfh\\\": \\\"false\\\", \\\"dumpFeatures\\\": \\\"true\\\", \\\"dumpMtx\\\": \\\"true\\\", \\\"dumpUmiGraph\\\": \\\"false\\\", \\\"expectCells\\\": \\\"\\\", \\\"forceCells\\\": \\\"\\\", \\\"freqThreshold\\\": \\\"3\\\", \\\"keepCBFraction\\\": \\\"1.0\\\", \\\"lowRegionMinNumBarcodes\\\": \\\"\\\", \\\"maxNumBarcodes\\\": \\\"\\\", \\\"minScoreFraction\\\": \\\"\\\", \\\"mrna\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"noDedup\\\": \\\"false\\\", \\\"numCellBootstraps\\\": \\\"\\\", \\\"rrna\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"whitelist\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}}\", \"pairstraight\": \"{\\\"__current_case__\\\": 0, \\\"file1\\\": {\\\"__class__\\\": \\\"ConnectedValue\\\"}, \\\"file2\\\": {\\\"__class__\\\": \\\"ConnectedValue\\\"}, \\\"orientation\\\": \\\"I\\\", \\\"readselect\\\": \\\"paired\\\", \\\"strandedness\\\": \\\"SR\\\"}\"}", 
+            "tool_version": "0.14.1.2+galaxy1", 
+            "type": "tool", 
+            "uuid": "c870ed8e-904d-47a2-8225-b07f5a600cc8", 
+            "workflow_outputs": [
+                {
+                    "label": null, 
+                    "output_name": "alevinmeta_info.json", 
+                    "uuid": "34175a7f-0335-4dad-a5b2-fd4645a70316"
+                }, 
+                {
+                    "label": null, 
+                    "output_name": "featureDump.txt", 
+                    "uuid": "9fcb99c4-d6f8-49df-9c7b-f8d9f601abb0"
+                }, 
+                {
+                    "label": null, 
+                    "output_name": "salmon_quant.log", 
+                    "uuid": "c2611867-136c-47e3-a1e8-d6dfbdcecbf1"
+                }, 
+                {
+                    "label": null, 
+                    "output_name": "quants_mat_rows.txt", 
+                    "uuid": "c2662017-492a-4bfb-aa99-1e8cb5c78233"
+                }, 
+                {
+                    "label": null, 
+                    "output_name": "quants_tier_mat.gz", 
+                    "uuid": "b6fc8993-ed76-4797-89ac-3242739d4166"
+                }, 
+                {
+                    "label": null, 
+                    "output_name": "quants_mat.mtx.gz", 
+                    "uuid": "98deee14-d175-424e-b647-da8b1d1debc0"
+                }, 
+                {
+                    "label": null, 
+                    "output_name": "quants_mat_cols.txt", 
+                    "uuid": "e3c9447c-ee1a-4dd9-8e4c-d9a5c4163de0"
+                }, 
+                {
+                    "label": null, 
+                    "output_name": "raw_cb_frequency.txt", 
+                    "uuid": "f52f16cf-df59-4e11-9c07-99b92bdc710d"
+                }
+            ]
+        }, 
+        "7": {
+            "annotation": "", 
+            "content_id": "toolshed.g2.bx.psu.edu/repos/ebi-gxa/salmon_kallisto_mtx_to_10x/_salmon_kallisto_mtx_to_10x/0.0.1+galaxy3", 
+            "errors": null, 
+            "id": 7, 
+            "input_connections": {
+                "barcodes_file": {
+                    "id": 6, 
+                    "output_name": "quants_mat_rows.txt"
+                }, 
+                "genes_file": {
+                    "id": 6, 
+                    "output_name": "quants_mat_cols.txt"
+                }, 
+                "mtx_file": {
+                    "id": 6, 
+                    "output_name": "quants_mat.mtx.gz"
+                }
+            }, 
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool salmonKallistoMtxTo10x", 
+                    "name": "genes_file"
+                }, 
+                {
+                    "description": "runtime parameter for tool salmonKallistoMtxTo10x", 
+                    "name": "barcodes_file"
+                }, 
+                {
+                    "description": "runtime parameter for tool salmonKallistoMtxTo10x", 
+                    "name": "mtx_file"
+                }
+            ], 
+            "label": null, 
+            "name": "salmonKallistoMtxTo10x", 
+            "outputs": [
+                {
+                    "name": "genes_out", 
+                    "type": "tabular"
+                }, 
+                {
+                    "name": "barcodes_out", 
+                    "type": "tabular"
+                }, 
+                {
+                    "name": "matrix_out", 
+                    "type": "mtx"
+                }
+            ], 
+            "position": {
+                "left": 1321, 
+                "top": 203
+            }, 
+            "post_job_actions": {
+                "ChangeDatatypeActionbarcodes_out": {
+                    "action_arguments": {
+                        "newtype": "tabular"
+                    }, 
+                    "action_type": "ChangeDatatypeAction", 
+                    "output_name": "barcodes_out"
+                }, 
+                "RenameDatasetActionmatrix_out": {
+                    "action_arguments": {
+                        "newname": "Transformed matrix"
+                    }, 
+                    "action_type": "RenameDatasetAction", 
+                    "output_name": "matrix_out"
+                }
+            }, 
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/ebi-gxa/salmon_kallisto_mtx_to_10x/_salmon_kallisto_mtx_to_10x/0.0.1+galaxy3", 
+            "tool_shed_repository": {
+                "changeset_revision": "60fa6080f86f", 
+                "name": "salmon_kallisto_mtx_to_10x", 
+                "owner": "ebi-gxa", 
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            }, 
+            "tool_state": "{\"__page__\": null, \"__rerun_remap_job_id__\": null, \"genes_file\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"cell_prefix\": \"\\\"\\\"\", \"barcodes_file\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"mtx_file\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\"}", 
+            "tool_version": "0.0.1+galaxy3", 
+            "type": "tool", 
+            "uuid": "fa9ef99d-4d6b-42e0-a224-1d7d92658d94", 
+            "workflow_outputs": [
+                {
+                    "label": "Transformed matrix", 
+                    "output_name": "matrix_out", 
+                    "uuid": "d014a3b2-a8e5-4b32-9d61-3a34537d43b3"
+                }, 
+                {
+                    "label": null, 
+                    "output_name": "genes_out", 
+                    "uuid": "78e860cd-85df-40b4-90a8-da7a21a289d7"
+                }, 
+                {
+                    "label": "", 
+                    "output_name": "barcodes_out", 
+                    "uuid": "a068b14d-c1af-45b0-ae92-29a18d612ae2"
+                }
+            ]
+        }, 
+        "8": {
+            "annotation": "", 
+            "content_id": "toolshed.g2.bx.psu.edu/repos/ebi-gxa/droplet_barcode_plot/_dropletBarcodePlot/1.6.1+galaxy0", 
+            "errors": null, 
+            "id": 8, 
+            "input_connections": {
+                "input|mtx_matrix": {
+                    "id": 6, 
+                    "output_name": "quants_mat.mtx.gz"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Droplet barcode rank plot", 
+            "outputs": [
+                {
+                    "name": "plot_file", 
+                    "type": "png"
+                }, 
+                {
+                    "name": "thresholds_file", 
+                    "type": "txt"
+                }
+            ], 
+            "position": {
+                "left": 1321, 
+                "top": 495
+            }, 
+            "post_job_actions": {
+                "HideDatasetActionthresholds_file": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "thresholds_file"
+                }, 
+                "RenameDatasetActionplot_file": {
+                    "action_arguments": {
+                        "newname": "Barcode plot (from matrix)"
+                    }, 
+                    "action_type": "RenameDatasetAction", 
+                    "output_name": "plot_file"
+                }
+            }, 
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/ebi-gxa/droplet_barcode_plot/_dropletBarcodePlot/1.6.1+galaxy0", 
+            "tool_shed_repository": {
+                "changeset_revision": "04f32429dcf2", 
+                "name": "droplet_barcode_plot", 
+                "owner": "ebi-gxa", 
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            }, 
+            "tool_state": "{\"__page__\": null, \"roryk_multiplier\": \"\\\"1.5\\\"\", \"density_bins\": \"\\\"50\\\"\", \"__rerun_remap_job_id__\": null, \"label\": \"\\\"Barcode rank plot (raw barcode frequencies)\\\"\", \"input\": \"{\\\"__current_case__\\\": 0, \\\"cellsbyrow\\\": \\\"true\\\", \\\"mtx_matrix\\\": {\\\"__class__\\\": \\\"ConnectedValue\\\"}, \\\"type\\\": \\\"true\\\"}\"}", 
+            "tool_version": "1.6.1+galaxy0", 
+            "type": "tool", 
+            "uuid": "281ad316-7f95-4a7e-a986-eb260efac184", 
+            "workflow_outputs": [
+                {
+                    "label": "Barcode plot (from matrix)", 
+                    "output_name": "plot_file", 
+                    "uuid": "0a2f0b0d-b72c-426d-8d43-7e9ca1f9710e"
+                }
+            ]
+        }, 
+        "9": {
+            "annotation": "", 
+            "content_id": "toolshed.g2.bx.psu.edu/repos/ebi-gxa/droplet_barcode_plot/_dropletBarcodePlot/1.6.1+galaxy0", 
+            "errors": null, 
+            "id": 9, 
+            "input_connections": {
+                "input|barcode_frequencies": {
+                    "id": 6, 
+                    "output_name": "raw_cb_frequency.txt"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Droplet barcode rank plot", 
+            "outputs": [
+                {
+                    "name": "plot_file", 
+                    "type": "png"
+                }, 
+                {
+                    "name": "thresholds_file", 
+                    "type": "txt"
+                }
+            ], 
+            "position": {
+                "left": 1321, 
+                "top": 717
+            }, 
+            "post_job_actions": {
+                "HideDatasetActionthresholds_file": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "thresholds_file"
+                }, 
+                "RenameDatasetActionplot_file": {
+                    "action_arguments": {
+                        "newname": "Barcode plot (from raw barcode counts)"
+                    }, 
+                    "action_type": "RenameDatasetAction", 
+                    "output_name": "plot_file"
+                }
+            }, 
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/ebi-gxa/droplet_barcode_plot/_dropletBarcodePlot/1.6.1+galaxy0", 
+            "tool_shed_repository": {
+                "changeset_revision": "04f32429dcf2", 
+                "name": "droplet_barcode_plot", 
+                "owner": "ebi-gxa", 
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            }, 
+            "tool_state": "{\"__page__\": null, \"roryk_multiplier\": \"\\\"1.5\\\"\", \"density_bins\": \"\\\"50\\\"\", \"__rerun_remap_job_id__\": null, \"label\": \"\\\"Barcode rank plot (processed matrix)\\\"\", \"input\": \"{\\\"__current_case__\\\": 1, \\\"barcode_frequencies\\\": {\\\"__class__\\\": \\\"ConnectedValue\\\"}, \\\"type\\\": \\\"false\\\"}\"}", 
+            "tool_version": "1.6.1+galaxy0", 
+            "type": "tool", 
+            "uuid": "8fb1f5f3-2206-4706-8281-c2f91f9977de", 
+            "workflow_outputs": [
+                {
+                    "label": "Barcode plot (from raw barcode counts)", 
+                    "output_name": "plot_file", 
+                    "uuid": "77c3de8f-5689-4a42-9da0-670b49d44f8d"
+                }
+            ]
+        }, 
+        "10": {
+            "annotation": "", 
+            "content_id": "toolshed.g2.bx.psu.edu/repos/ebi-gxa/dropletutils_read_10x/dropletutils_read_10x/1.0.3+galaxy0", 
+            "errors": null, 
+            "id": 10, 
+            "input_connections": {
+                "barcodes": {
+                    "id": 7, 
+                    "output_name": "barcodes_out"
+                }, 
+                "genes": {
+                    "id": 7, 
+                    "output_name": "genes_out"
+                }, 
+                "matrix": {
+                    "id": 7, 
+                    "output_name": "matrix_out"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "DropletUtils Read10x", 
+            "outputs": [
+                {
+                    "name": "output_rds", 
+                    "type": "rdata"
+                }
+            ], 
+            "position": {
+                "left": 1649, 
+                "top": 203
+            }, 
+            "post_job_actions": {}, 
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/ebi-gxa/dropletutils_read_10x/dropletutils_read_10x/1.0.3+galaxy0", 
+            "tool_shed_repository": {
+                "changeset_revision": "d62a9aa0411e", 
+                "name": "dropletutils_read_10x", 
+                "owner": "ebi-gxa", 
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            }, 
+            "tool_state": "{\"__page__\": null, \"__rerun_remap_job_id__\": null, \"genes\": \"{\\\"__class__\\\": \\\"ConnectedValue\\\"}\", \"matrix\": \"{\\\"__class__\\\": \\\"ConnectedValue\\\"}\", \"barcodes\": \"{\\\"__class__\\\": \\\"ConnectedValue\\\"}\"}", 
+            "tool_version": "1.0.3+galaxy0", 
+            "type": "tool", 
+            "uuid": "46a7dd0e-c82d-4847-84cd-41eadc7bbad1", 
+            "workflow_outputs": [
+                {
+                    "label": null, 
+                    "output_name": "output_rds", 
+                    "uuid": "4351cc5b-a62a-460c-adc0-66ac86b4df00"
+                }
+            ]
+        }, 
+        "11": {
+            "annotation": "", 
+            "content_id": "toolshed.g2.bx.psu.edu/repos/ebi-gxa/dropletutils_empty_drops/dropletutils_empty_drops/1.0.3+galaxy1", 
+            "errors": null, 
+            "id": 11, 
+            "input_connections": {
+                "input": {
+                    "id": 10, 
+                    "output_name": "output_rds"
+                }
+            }, 
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool DropletUtils emptyDrops", 
+                    "name": "input"
+                }
+            ], 
+            "label": null, 
+            "name": "DropletUtils emptyDrops", 
+            "outputs": [
+                {
+                    "name": "output_rdata", 
+                    "type": "rdata"
+                }, 
+                {
+                    "name": "output_txt", 
+                    "type": "txt"
+                }
+            ], 
+            "position": {
+                "left": 1977, 
+                "top": 203
+            }, 
+            "post_job_actions": {
+                "RenameDatasetActionoutput_rdata": {
+                    "action_arguments": {
+                        "newname": "SCE object (min 5 UMIs)"
+                    }, 
+                    "action_type": "RenameDatasetAction", 
+                    "output_name": "output_rdata"
+                }
+            }, 
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/ebi-gxa/dropletutils_empty_drops/dropletutils_empty_drops/1.0.3+galaxy1", 
+            "tool_shed_repository": {
+                "changeset_revision": "da189ce4016b", 
+                "name": "dropletutils_empty_drops", 
+                "owner": "ebi-gxa", 
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            }, 
+            "tool_state": "{\"filter_empty\": \"\\\"false\\\"\", \"lower\": \"\\\"5\\\"\", \"__page__\": null, \"__rerun_remap_job_id__\": null, \"ignore\": \"\\\"\\\"\", \"niters\": \"\\\"1000\\\"\", \"input\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"retain\": \"\\\"\\\"\", \"filter_fdr\": \"\\\"0.01\\\"\", \"testambient\": \"\\\"false\\\"\"}", 
+            "tool_version": "1.0.3+galaxy1", 
+            "type": "tool", 
+            "uuid": "e2c8214c-79f5-4add-9634-f0c4159f5309", 
+            "workflow_outputs": [
+                {
+                    "label": "SCE object (min 5 UMIs)", 
+                    "output_name": "output_rdata", 
+                    "uuid": "e965bd9a-928b-47b6-95c7-e2cc8b112855"
+                }, 
+                {
+                    "label": null, 
+                    "output_name": "output_txt", 
+                    "uuid": "25dc751e-6f8a-45ba-b8e6-61c712616633"
+                }
+            ]
+        }, 
+        "12": {
+            "annotation": "", 
+            "content_id": "toolshed.g2.bx.psu.edu/repos/ebi-gxa/dropletutils_empty_drops/dropletutils_empty_drops/1.0.3+galaxy1", 
+            "errors": null, 
+            "id": 12, 
+            "input_connections": {
+                "input": {
+                    "id": 10, 
+                    "output_name": "output_rds"
+                }
+            }, 
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool DropletUtils emptyDrops", 
+                    "name": "input"
+                }
+            ], 
+            "label": null, 
+            "name": "DropletUtils emptyDrops", 
+            "outputs": [
+                {
+                    "name": "output_rdata", 
+                    "type": "rdata"
+                }, 
+                {
+                    "name": "output_txt", 
+                    "type": "txt"
+                }
+            ], 
+            "position": {
+                "left": 1977, 
+                "top": 407
+            }, 
+            "post_job_actions": {
+                "HideDatasetActionoutput_txt": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "output_txt"
+                }, 
+                "RenameDatasetActionoutput_rdata": {
+                    "action_arguments": {
+                        "newname": "SCE object (min 100 UMIs)"
+                    }, 
+                    "action_type": "RenameDatasetAction", 
+                    "output_name": "output_rdata"
+                }
+            }, 
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/ebi-gxa/dropletutils_empty_drops/dropletutils_empty_drops/1.0.3+galaxy1", 
+            "tool_shed_repository": {
+                "changeset_revision": "da189ce4016b", 
+                "name": "dropletutils_empty_drops", 
+                "owner": "ebi-gxa", 
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            }, 
+            "tool_state": "{\"filter_empty\": \"\\\"false\\\"\", \"lower\": \"\\\"100\\\"\", \"__page__\": null, \"__rerun_remap_job_id__\": null, \"ignore\": \"\\\"\\\"\", \"niters\": \"\\\"1000\\\"\", \"input\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"retain\": \"\\\"\\\"\", \"filter_fdr\": \"\\\"0.01\\\"\", \"testambient\": \"\\\"false\\\"\"}", 
+            "tool_version": "1.0.3+galaxy1", 
+            "type": "tool", 
+            "uuid": "b114c5f7-6bb2-4c53-9b72-a36541c3b14a", 
+            "workflow_outputs": [
+                {
+                    "label": "SCE object (min 100 UMIs)", 
+                    "output_name": "output_rdata", 
+                    "uuid": "bda2d65f-6b50-448a-8482-7c82fdeee5e6"
+                }
+            ]
+        }, 
+        "13": {
+            "annotation": "", 
+            "content_id": "toolshed.g2.bx.psu.edu/repos/ebi-gxa/sceasy_convert/sceasy_convert/0.0.5+galaxy1", 
+            "errors": null, 
+            "id": 13, 
+            "input_connections": {
+                "conversion|input_object_file": {
+                    "id": 11, 
+                    "output_name": "output_rdata"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "SCEasy convert", 
+            "outputs": [
+                {
+                    "name": "output_anndata", 
+                    "type": "h5"
+                }
+            ], 
+            "position": {
+                "left": 2305, 
+                "top": 203
+            }, 
+            "post_job_actions": {
+                "RenameDatasetActionoutput_anndata": {
+                    "action_arguments": {
+                        "newname": "annData object ready for downstream "
+                    }, 
+                    "action_type": "RenameDatasetAction", 
+                    "output_name": "output_anndata"
+                }
+            }, 
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/ebi-gxa/sceasy_convert/sceasy_convert/0.0.5+galaxy1", 
+            "tool_shed_repository": {
+                "changeset_revision": "f62bc418173f", 
+                "name": "sceasy_convert", 
+                "owner": "ebi-gxa", 
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            }, 
+            "tool_state": "{\"__page__\": null, \"conversion\": \"{\\\"__current_case__\\\": 2, \\\"assay\\\": \\\"counts\\\", \\\"direction\\\": \\\"sce2anndata\\\", \\\"input_object_file\\\": {\\\"__class__\\\": \\\"ConnectedValue\\\"}}\", \"__rerun_remap_job_id__\": null}", 
+            "tool_version": "0.0.5+galaxy1", 
+            "type": "tool", 
+            "uuid": "f59f4934-db9c-4153-8067-16e4e138e879", 
+            "workflow_outputs": [
+                {
+                    "label": "annData object ready for downstream ", 
+                    "output_name": "output_anndata", 
+                    "uuid": "55eb01dc-f313-4281-b6cf-0d454acd674a"
+                }
+            ]
+        }
+    }, 
+    "tags": [], 
+    "uuid": "c6bba457-f7c3-4cd6-930e-6b2604be5329", 
+    "version": 25
+}
