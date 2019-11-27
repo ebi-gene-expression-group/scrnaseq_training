@@ -1,0 +1,33 @@
+# Filtering
+
+Explore the main filtering tools available, you can find them by searching at the top left on top of the Tools panel for 
+`filtercells` and `filtergenes`:
+
+Screenshot 2019-11-26 at 19.26.55
+
+Click on Scanpy FilterCells. If you scroll down you will see the numerical parameters box:
+
+Screenshot 2019-11-26 at 19.28.59
+
+You can add more filtering boxes for other numerical variables and categorical (including booleans) variables. You can also add
+values (like a list of gene names) through a file.
+
+To try the tool import the history called `Input filtering` available through `Shared data -> Histories`:
+
+Screenshot 2019-11-26 at 19.39.23
+
+Click on the History name and then click on the import button:
+
+Screenshot 2019-11-26 at 19.42.57
+
+Leave the same name as proposed in the dialog and press "Import".
+
+Now search again for the tool `filtercells`, click on Scanpy FilterCells and the input should be set to AnnData No filtering. 
+This file was generated from 10x formatted files obtained from Expression Atlas [E-MTAB-5061](https://www.ebi.ac.uk/gxa/sc/experiments/E-MTAB-5061/results/tsne)
+using the Workflow `Read data and transform metadata` available in the `Shared data -> Workflows`. These are the sort of files that 
+you would generate by the process explained in the Quantification module earlier on.
+
+
+
+
+
