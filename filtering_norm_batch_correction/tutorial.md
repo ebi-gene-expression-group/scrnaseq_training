@@ -149,7 +149,7 @@ As you noticed, running only a few tools required a lot of manual setting up and
 
 ## 1.6- Start from a clean history
 
-Import again the history for filtering as explained in point `1.1.1`,
+Import again the history for filtering as explained in point [1.1.1](#111--import-history-for-filtering),
 this time changing the name to `Input for filtering workflow` so that you can tell it apart from the previous import.
 
 ![Screenshot-2019-11-27-at-15.47.42](img/Screenshot-2019-11-27-at-15.47.42.png)
