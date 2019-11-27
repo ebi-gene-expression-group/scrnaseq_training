@@ -250,7 +250,7 @@ select `Run` in the drop down menu for the workflow. In the next screen, this ti
 
 ![Screenshot-2019-11-27-at-16.41.46](img/Screenshot-2019-11-27-at-16.41.46.png)
 
-Name the new history `Normalisation and batch correction 0.2.8 results`. Make sure, as shown above, that the input to the workflow is the `AnnData after QC` file. Once you see that the 18 tools where loaded before, press `Run workflow`.
+Name the new history `Normalisation and batch correction 0.2.8 results`. Make sure, as shown above, that the input to the workflow is the `AnnData after QC` file. Once you see that the 18 tools are loaded below, press `Run workflow`.
 
 Switch to the newly created history by clicking on the link of the next screen:
 
@@ -261,7 +261,7 @@ Results should start to pile up in the history. In the meantime, explore the wor
 ## 2.2.- Explore the workflow
 
 Explore the workflow following the same directions as in part `1.8`,
-but this time of course with the `imported: Normalisation and batch correction 0.2.8`.
+but this time of course with the `imported: Normalisation and batch correction 0.2.8` workflow.
 
 - Why does the workflow has 3 branches?
 - Explore the order of the steps and what is being done in them.
@@ -274,7 +274,7 @@ but this time of course with the `imported: Normalisation and batch correction 0
 Go back to the history (we would expect the results to be there in around 10 minutes since execution start) by pressing on `Analyze Data` at the top of the main panel. Ideally your history should look all green now.
 
 Compare the plots with and without normalisation and batch correction. If your history doesn't have the results, you can import
-the history named `Normalisation and batch correction 0.2.8 results`.
+the history named `Normalisation and batch correction 0.2.8 results` from the `Shared Data -> Histories` in the main menu.
 
 # Delete histories
 
