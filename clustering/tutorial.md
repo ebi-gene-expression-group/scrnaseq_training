@@ -55,7 +55,7 @@ Make sure that the input is set to the `AnnData after QC` object, set `Send resu
 
 ![Screenshot-2019-11-27-at-21.34.29](img/Screenshot-2019-11-27-at-21.34.29.png)
 
-Then once the 17 steps are loaded loaded below, press `Run Workflow`. You can either go to the new history created or if you where considering some of the ideas of point [3.2](#32--inspect-the-workflow) you can go back to that while the workflow runs.
+Then once the 17 steps are loaded loaded below, press `Run Workflow`. You can either go to the new history created or if you were considering some of the ideas of point [3.2](#32--inspect-the-workflow) you can go back to that while the workflow runs.
 
 ## 3.4.- Inspect the workflow results
 
