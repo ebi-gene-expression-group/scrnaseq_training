@@ -1,3 +1,5 @@
+# Filtering, normalisation and batch correction practical
+
 # 1.- Filtering
 
 ## 1.1.- Explore and get data to filter
@@ -44,13 +46,13 @@ the `pct_counts_mito` AnnData observation field. We will use this to filter our 
 After clicking again on the `Scanpy FilterCells` tool in the tool's panel to the left, and making sure that the input is the desired one:
 ![Screenshot-2019-11-26-at-20.02.34](img/Screenshot-2019-11-26-at-20.02.34.png)
 
-scroll down in the main panel where the tool is shown to `Parameters to select cells to keep`, there write (replacing the current content) `pct_counts_mito`,
+scroll down in the main panel where the tool is shown to `Parameters to select cells to keep`, there write (replacing the current content) `pct_counts_mito`, and the min and max values shown.
 
 ![Screenshot-2019-11-26-at-20.07.55](img/Screenshot-2019-11-26-at-20.07.55.png)
 
 and scroll down to find the blue `Execute` button and press it.
 
-At the end you should have a new item in the history:
+An item should appear in your history panel to the right, first grey waiting to be sent and then orange while executing. After a short while you should have a new item in the history:
 
 ![Screenshot-2019-11-26-at-21.21.26](img/Screenshot-2019-11-26-at-21.21.26.png)
 
@@ -63,14 +65,14 @@ you can find this out or more by using the `Inspect AnnData` tool with the origi
 
 ## 1.3.- Remove all mitochondrial genes
 
-Locate the tool `Scanpy FilterGenes`, set as input the output of the previous step (which will called something
+Locate the tool `Scanpy FilterGenes`, set as input the output of the previous step (which is called something
 like `Scanpy FilterCells on data x: Filtered cells AnnData`) and then scroll down to the
 `Categories to select genes to keep (unless negate is checked)` part, add one of those sections pressing the underlying plus button
 and fill it like this:
 
 ![Screenshot-2019-11-26-at-21.43.31](img/Screenshot-2019-11-26-at-21.43.31.png)
 
-Make sure that the force recalculation of QCs is set to `Yes`.
+Make sure that the force recalculation of QCs is set to `Yes` at the bottom.
 
 Then scroll down and press Execute. How many genes did we get rid off now?
 
@@ -101,6 +103,8 @@ Scroll down to the Execute button and press it... Ooops. An error.
 
 Click on the name of the result to expand it, and then go down to find the `i` (for Info) button and click it.
 
+![Screenshot-2019-11-27-at-17.52.27](img/Screenshot-2019-11-27-at-17.52.27.png)
+
 This view in the main panel gives you information about the job, and might tell you something that as a user you might be able to change to make
 the job work (sometimes there can be conflicting parameters or certain parameters trigger a bug, and sometimes there is not much that you can do as a user).
 
@@ -128,14 +132,15 @@ Click on it to expand it, inside you will find the parameter `Colors to use for 
 
 ![Screenshot-2019-11-26-at-22.15.50](img/Screenshot-2019-11-26-at-22.15.50.png)
 
-Change it to any other color and press Execute again, this should fix the issue.
+Change it to any other color and press `Execute` again, this should fix the issue.
 
 Once done, click on the `Eye` button in the resulting green dataset, you should get something like this on the main panel:
 
 ![Screenshot-2019-11-26-at-22.23.41](img/Screenshot-2019-11-26-at-22.23.41.png)
 
-Bonus: try the same plotting on your initial dataset to see if there is any appreciable changes.
-Hint: to reduce the number of settings that you need to manually adjust, press the `Run this job again` button in the last succesful
+**Bonus:** try the same plotting on your initial dataset to see if there is any appreciable changes.
+
+**Hint:** to reduce the number of settings that you need to manually adjust, press the `Run this job again` button in the last successful
 execution and simply change the input object in the main panel.
 
 ## 1.5.- Running a workflow
