@@ -276,6 +276,60 @@ Go back to the history (we would expect the results to be there in around 10 min
 Compare the plots with and without normalisation and batch correction. If your history doesn't have the results, you can import
 the history named `Normalisation and batch correction 0.2.8 results` from the `Shared Data -> Histories` in the main menu.
 
+### 2.3.4.- Interactive result
+
+One of the results of the pipeline will be the data loaded into UCSC CellBrowser, within Galaxy.
+
+At the top of the history for `Normalisation and batch correction results` you should see the UCSC CellBrowser result:
+
+![Screenshot-2019-12-03-at-21.34.12](img/Screenshot-2019-12-03-at-21.34.12.png)
+
+Click on the `Eye` icon and you should see the following in the main panel:
+
+![Screenshot-2019-12-03-at-21.36.09](img/Screenshot-2019-12-03-at-21.36.09.png)
+
+Click on the `Open` button, you should see:
+
+![Screenshot-2019-12-03-at-21.37.40](img/Screenshot-2019-12-03-at-21.37.40.png)
+
+You can click on the arrows at the bottom left and right of the window to make more room for UCSC CellBrowser.
+
+![Screenshot-2019-12-03-at-21.38.38](img/Screenshot-2019-12-03-at-21.38.38.png)
+
+You can change the color used for the cells by choosing a different cell annotation at the top left in `Color by annotation`:
+
+![Screenshot-2019-12-03-at-21.42.08](img/Screenshot-2019-12-03-at-21.42.08.png)
+
+If you hover over a cell, you will see its metadata to the left.
+
+If you select the rectangular selection
+
+![Screenshot-2019-12-03-at-21.43.51](img/Screenshot-2019-12-03-at-21.43.51.png)
+
+and drag within the main canvas and select cells, you can get stats about that group of selected cells.
+
+![Screenshot-2019-12-03-at-21.45.53](img/Screenshot-2019-12-03-at-21.45.53.png)
+
+Since we calculated the UMAP dimensionality reduction, you can switch to it by clicking on `Layout` at the top:
+
+![Screenshot-2019-12-03-at-21.47.02](img/Screenshot-2019-12-03-at-21.47.02.png)
+
+You can switch to gene related operations by clicking on `Genes` at the top left.
+
+![Screenshot-2019-12-03-at-22.07.09](img/Screenshot-2019-12-03-at-22.07.09.png)
+
+And then search for CFTR, to see where the Cystic Fibrosis Transmembrane Regulator gene is being expressed (CFTR is one of the marker genes).
+
+![Screenshot-2019-12-03-at-21.49.16](img/Screenshot-2019-12-03-at-21.49.16.png)
+
+You should see, if in UMAP:
+
+![Screenshot-2019-12-03-at-21.50.58](img/Screenshot-2019-12-03-at-21.50.58.png)
+
+that CFTR is well expressed in clusters 0 and 11.
+
+
+
 # Delete histories
 
 As you might have noticed, each history accumulates a reasonable amount of data, partly because the objects are copied at each step. Once you are done with the history, you can delete it by clicking on the cog above the active history and selecting `Delete permanently`.
