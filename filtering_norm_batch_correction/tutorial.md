@@ -34,7 +34,7 @@ Leave the same name as proposed in the dialog and press `Import`.
 
 ## 1.2.- Filter to keep only cells with up to 20% counts of mitochondrial genes
 
-Now search again for the tool `filtercells`, click on `Scanpy FilterCells` and the input should be set to `AnnData No filtering`.
+Now search again for the tool `filtercells`, click on `Scanpy FilterCells` and the input should be set to `AnnData No filtering` CORRECTION: `AnnData Operations on data 1: metadata changes on AnnData`.
 This file was generated from 10x formatted files obtained from Expression Atlas [E-MTAB-5061](https://www.ebi.ac.uk/gxa/sc/experiments/E-MTAB-5061/results/tsne)
 using the Workflow `Read data and transform metadata` available in the `Shared data -> Workflows`. These 10x formatted files are
 what you would generate by the process explained in the Quantification module earlier on the Generation of an expression matrix module.
