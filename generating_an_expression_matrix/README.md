@@ -5,7 +5,7 @@
 By the end of this short tutorial should you should understand:
 
  * how to generate an expression matrix from droplet-based single-cell
-transcriptomic data.  
+transcriptomic data.                   
  * how to do some basic quality control
  * how to pass the matrix for downstream analysis
 
@@ -122,15 +122,8 @@ build the index.
 Gene-level, rather than transcript-level, quantification is standard in
 scRNA-seq, which means that that alternatively spliced RNA molecules
 count as the same gene. In a nutshell, this quantification is used
-because:
-
- * droplet-based scRNA-seq use short reads, which can make it impossible
-to distinguish transcript isoforms; and  
- * even in full-length single-cell approaches (i.e. smart-seq) counting
-transcripts can lead to inaccurate estimations, largely due to heavy
-length-bias in RNA-seq.
-
-Therefore, scRNA-seq uses gene-level quantification.
+because droplet-based scRNA-seq use short, single-ended reads, which can
+make it impossible to distinguish transcript isoforms.
 
 To generate gene-level quantifications based on transcriptome
 quantification, Alevin and similar tools require a conversion between
