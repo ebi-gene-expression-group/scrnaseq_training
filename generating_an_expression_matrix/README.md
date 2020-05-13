@@ -4,7 +4,7 @@
 
 By the end of this short tutorial should you should understand:
 
- * how to generate an expression matrix from droplet-based single-cell transcriptomic data.                              
+ * how to generate an expression matrix from droplet-based single-cell transcriptomic data.                               
  * how to do some basic quality control
  * how to pass the matrix for downstream analysis
 
