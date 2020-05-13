@@ -117,7 +117,7 @@ We can now run Alevin. Locate the tool by searching with the 'search tools' box.
  * protocol
  * Transcript to gene map file
 Additionally, do select:
- * Select a reference transcriptome: Built-in index if available (building one from the history index will take a while!)
+ * Select a reference transcriptome: Built-in index if available (building one from the history transcriptome will take a while!)
  * Retrieve all output files
 (Look in optional commands)
  * dumpFeatures: Yes
