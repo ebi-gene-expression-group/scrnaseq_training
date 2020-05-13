@@ -11,7 +11,7 @@ By the end of this short tutorial should you should understand:
 ## You will need
 
  * A fastq file containing cell barcode and unique molecular identifiers (UMIs)
- * A matching fastq file containg biological sequences (cDNAs)
+ * A matching fastq file containing biological sequences (cDNAs)
  * A reference transcriptome to map against
  * Necessary information to generate a transcript-to-gene mapping
 
@@ -82,7 +82,7 @@ Find the 'concatenate' tool in Galaxy under 'Text Manipulation':
 Select biological and spike-in sequences from your history, and use them as inputs. Run the tool and generate your combined annotations.  
 > EXERCISE: Which of the 'attributes' in the last column of the GTF files contains the transcript and gene identifiers? Hint: The file is organised such that the last column (headed 'Group') contains a wealth of information in the format: attribute1 "information associated with attribute";attribute2 "information associated with attribute 2" etc.
 
-Now we have combined annotations, we can parse the GTF file using the [rtracklayer](https://bioconductor.org/packages/release/bioc/html/rtracklayer.html) package in R. This parsing will give us an index with a list of transcript names and their corresponding gene names for counting. We've made a convenience tool in Galaxy to wrap that functionality for you- search for 'GTF2GeneList':
+Now we have combined annotations, we can parse the GTF file using the [rtracklayer](https://bioconductor.org/packages/release/bioc/html/rtracklayer.html) package in R. This parsing will give us a conversion table with a list of transcript names and their corresponding gene names for counting. We've made a convenience tool in Galaxy to wrap that functionality for you- search for 'GTF2GeneList':
 
 ![GTF2GeneList](gtf2genelist2.png)
 
@@ -158,7 +158,7 @@ This will use the actual cell counts produced in Alevin's outputs to make the pl
 
 ![barcode plot from processed barcode counts](barcodes_processed.png)
 
-You should see a completely vertical drop-off where Alevin has trunctated the distribution (excluded any cell barcode that had <10 UMI).
+You should see a completely vertical drop-off where Alevin has trunctated the distribution (after excluding any cell barcode that had <10 UMI, Alevin then chose a threshold based off the curve and removed all barcodes with fewer UMIs).
 
 In experiments with relatively simple characteristics, this 'knee detection' method works relatively well. But some populations present difficulties due to sub-populations of small cells that cannot be distinguished from empty droplets based purely on counts by barcode. Some libraries produce multiple 'knees' for multiple sub-populations. The [emptyDrops](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1662-y) method has become a popular way of dealing with this. emptyDrops still retains barcodes with very high counts, but also adds in barcodes that can be statistically distinguished from the ambient profiles, even if total counts are similar.
 
