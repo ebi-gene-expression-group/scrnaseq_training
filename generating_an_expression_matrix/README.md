@@ -69,7 +69,7 @@ A transcriptome index contains all of the transcript sequences and corresponding
 
 ### 2. Generate a transcript to gene mapping
 
-Gene-level, rather than transcript-level, quantification is standard in scRNA-seq, which means that that alternatively spliced RNA molecules count as the same gene. In a nutshell, this quantification is used because droplet-based scRNA-seq use short, single-ended reads, which can make it impossible to distinguish transcript isoforms.
+Gene-level, rather than transcript-level, quantification is standard in scRNA-seq, which means that that alternatively spliced RNA molecules count as the same gene. In a nutshell, this quantification is used because droplet-based scRNA-seq use short, single-ended reads, which can make it tricky to distinguish transcript isoforms.
 
 To generate gene-level quantifications based on transcriptome quantification, Alevin and similar tools require a conversion between transcript and gene identifiers. We can derive a transcript-gene conversion from the gene annotations available in genome resources such as Ensembl. The transcripts in such a list need to match the ones we used in the sequence reference above. The study we're working with here added spike-ins to their samples, so when we created the index above in preparation for this tutorial, we combined sequence information for the biological sequences as well as the ERCC spike-ins. So now we need to generate a transcript to gene mapping with both types of sequence.
 
