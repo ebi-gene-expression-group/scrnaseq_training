@@ -106,7 +106,7 @@ Now we have everything we need to run Alevin:
  * cDNA reads
  * transcript/ gene mapping
 
-We can now run Alevin. Locate the tool by searching with the 'search tools' box. Tip: Make sure that the Alevin tool version you are using is this: (Galaxy Version 0.14.1.2+galaxy1) - it should be default. If not, click 'Versions' and choose that version.   
+We can now run Alevin. Locate the tool by searching with the 'search tools' box. In some public instances, it won't show up if you search for it. Instead, you have to clip the Single Cell tab at the left and scrolled down to the Alevin tool. Tip: Make sure that the Alevin tool version you are using is this: (Galaxy Version 0.14.1.2+galaxy1) - it should be default. If not, click 'Versions' and choose that version.   
 
 ![The Alevin tool](alevin2.png)
 
