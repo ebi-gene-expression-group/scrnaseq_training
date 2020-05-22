@@ -65,7 +65,9 @@ Alevin collapses the steps involved in dealing with dscRNA-seq into a single pro
 
 ### 1. Generate a transcriptome index
 
-A transcriptome index contains all of the transcript sequences and corresponding transcript names likely to be present in your experiment's read data. Normally, you would need to first generate the transcript sequence list and then align these to their corresponding transcript names or identifiers, thus generating the transcriptome index. Is there a general transcriptome index for each species? Of course! Without delving further, however, note that not all transcriptome indices of the same species are, in fact, the same! However, generating a custom transcriptome index is too time-consuming to do as part of this session, so we'll use one a built-in index. But do have a look at the fasta format sequences provided, which are the same as the ones we used to build the index.   
+Tools such as Alevin need to compare the sequences in your sample to a reference containing all the likely transcript sequences (a 'transcriptome'). This will contain the biological transcript sequences known for a given species, and perhaps also technical sequences such as 'spike ins' - more on that later.  
+
+To be able to search a transcriptome quickly, Alevin needs to convert the text (FASTA) format sequences into something it can search quickly, called an 'index'. Because the types of biological and technical sequences we need to include in the index can vary between experiments, and because we often want to use the most up-to-date reference sequences from Ensembl or NCBI, we can end up re-making the indices quite often. Because the process is a little bit time-consuming, we'll use pre-made indices for this session where possible. But do have a look at the fasta format sequences provided, which are the same as the ones we used to build the index.   
 
 ### 2. Generate a transcript to gene mapping
 
