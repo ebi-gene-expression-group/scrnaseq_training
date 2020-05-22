@@ -108,7 +108,7 @@ Now we have everything we need to run Alevin:
  * cDNA reads
  * transcript/ gene mapping
 
-We can now run Alevin. Locate the tool by searching with the 'search tools' box. In some public instances, it won't show up if you search for it. Instead, you have to clip the Single Cell tab at the left and scrolled down to the Alevin tool. Tip: Make sure that the Alevin tool version you are using is this: (Galaxy Version 0.14.1.2+galaxy1) - it should be default. If not, click 'Versions' and choose that version.   
+We can now run Alevin. Locate the tool by searching with the 'search tools' box. In some public instances, it won't show up if you search for it. Instead, you have to click the Single Cell tab at the left and scroll down to the Alevin tool. Tip: Make sure that the Alevin tool version you are using is this: (Galaxy Version 0.14.1.2+galaxy1) - it should be default. If not, click 'Versions' and choose that version.   
 
 ![The Alevin tool](alevin2.png)
 
@@ -127,7 +127,7 @@ Additionally, do select:
 Many options can be left unset.
 Now, run Alevin to produce a matrix market format (MTX) format output.
 
-Because we're only using a million or so reads Alevin will run quickly and finish within a few minutes. Alevin produces many file outputs not all of which we'll use. You can refer to the [Alevin documentation](https://salmon.readthedocs.io/en/latest/alevin.html) if you're curious what they all are, but we're most interested in the matrix itself (quants_mat.mtx.gz - the cell, gene, count), the row (cell/ barcode) identifiers (quants_mat_rows.txt) and the column (gene) labels (quants_mat_cols.txt).  
+Because we're only using a million or so reads Alevin will run quickly and finish within a few minutes. Alevin produces many file outputs not all of which we'll use. You can refer to the [Alevin documentation](https://salmon.readthedocs.io/en/latest/alevin.html) if you're curious what they all are, but we're most interested in the matrix itself (quants_mat.mtx.gz - the count by gene and cell), the row (cell/ barcode) identifiers (quants_mat_rows.txt) and the column (gene) labels (quants_mat_cols.txt).  
 
 > EXERCISE: Once you've run Alevin, look through the files and see if you can find: 1) the mapping rate 2) how many cells are present in the matrix output.
 
