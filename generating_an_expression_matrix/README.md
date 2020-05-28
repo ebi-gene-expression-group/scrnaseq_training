@@ -115,7 +115,7 @@ We can now run Alevin. Locate the tool by searching with the 'search tools' box.
 > EXERCISE: Using what you know of this analysis and this protocol, try to determine the correct library options yourself for the following parameters:
  * file1
  * file2
- * specify the strandedness ('Fragment Library Types' (https://salmon.readthedocs.io/en/latest/library_type.html) will help here, although keep in mind the image there is drawn with the RNA 5' on top, whereas in this scRNA-seq protocol, the polyA is captured by its 3' tail and thus effectively the bottom or reverse strand...)
+ * specify the strandedness (the Salmon documentation on 'Fragment Library Types' and running the Alevin command (https://salmon.readthedocs.io/en/latest/library_type.html and https://salmon.readthedocs.io/en/latest/alevin.html) will help here, although keep in mind the image there is drawn with the RNA 5' on top, whereas in this scRNA-seq protocol, the polyA is captured by its 3' tail and thus effectively the bottom or reverse strand...)
  * protocol
  * Transcript to gene map file
 Additionally, do select:
