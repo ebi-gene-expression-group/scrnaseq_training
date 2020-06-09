@@ -1,6 +1,6 @@
-# Generating consensus predictions for single-cell RNA-seq cell types
+# Generating consensus predictions for single-cell RNA-seq cell types
 
-## Objectives
+## Objectives
 This tutorial is designed to provide instructions on running the single-cell RNA-seq cell types prediction workflow in Galaxy.
 
 ## Introduction 
@@ -54,19 +54,3 @@ After all config parameters are set, hit the `Run Workflow` button in the top ri
 
 ## Results 
 After the workflow is run, new entries will appear in the history on the right-hand side of the screen. The output table will be found under `Cell types - get consensus outputs` entry. 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Results 
