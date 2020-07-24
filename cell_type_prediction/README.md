@@ -8,7 +8,7 @@ When a new, unlabelled scRNA-seq expression data becomes available, it is rarely
 
 This framework employs a widely-used strategy for data classification - it uses multpile tools to obtain predictions, combines them and generates a consensus output. More specifically, it generates predictions for novel data using multiple libraries of classifiers trained on existing datasets with high-quality annotations. Predictions for each cell are initially filtered based on tool-specific scores, followed by calculating the frequency of each candidate label as well as [semantic similarity](https://en.wikipedia.org/wiki/Semantic_similarity) across predictions. These metrics allow to ascertain the reliability and agreement of predictions. Finally, a table with 3 top candidate labels, corresponding metrics per cell and datasets of origin is produced. 
 
-## Pre-requisites 
+## Pre-requisites 
 A basic understanding of the Galaxy system is required. See [this tutorial](https://training.galaxyproject.org/training-material/topics/introduction/tutorials/galaxy-intro-short/tutorial.html) for usage instructions. 
 
 ## What you will need
