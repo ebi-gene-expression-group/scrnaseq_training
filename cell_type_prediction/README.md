@@ -86,7 +86,10 @@ The above script will generate a [parameters file](galaxy_cli_use_case/cell_type
 
 - Finally, run this: 
 ```
-run_galaxy_workflow.py -C galaxy_credentials.yaml -H test_galaxy_cli -i inputs.yaml -W cell_types_prod_control_wf.yaml -P cell_types_prod_control_wf_parameters.yaml --parameters-yaml -G "ebi_cluster" --output-dir results/ 
+run_galaxy_workflow.py -C galaxy_credentials.yaml -H test_galaxy_cli \
+         -i inputs.yaml -W cell_types_prod_control_wf.yaml \
+         -P cell_types_prod_control_wf_parameters.yaml \
+         --parameters-yaml -G "ebi_cluster" --output-dir results 
 ```
 Add the `--debug` parameter in case you would like to activate debugging mode. The above script will generate execution of the workflow on the Galaxy server, with the results sent into `results` directory. 
 
