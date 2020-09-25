@@ -1,12 +1,12 @@
 expression_matrix:
-  path: 
+  path: <MATRIX_PATH>
   type: txt
-genes:
-  path: 
+genes: 
+  path: <GENES_PATH> 
   type: tsv
 barcodes:
-  path: 
+  path: <BARCODES_PATH> 
   type: tsv
 config_file:
-  path: 
+  path: <CONFIG_PATH> 
   type: txt

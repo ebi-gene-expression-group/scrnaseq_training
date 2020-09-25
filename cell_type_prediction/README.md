@@ -65,7 +65,7 @@ conda activate <env_name>
 ```
 
 The following steps will walk you through the procedure. Example data is provided in [galaxy_cli_use_case](galaxy_cli_use_case) directory.
- - To generate the workflow parameters yaml file, run 
+ - To generate the workflow parameters yaml file (needs to be done only once per imported workflow), run 
  ```
  generate_params_from_workflow.py -C galaxy_credentials.yaml \
                             -G test_instance -o test \
