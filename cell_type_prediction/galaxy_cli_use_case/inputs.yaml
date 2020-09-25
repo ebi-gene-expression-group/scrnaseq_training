@@ -1,0 +1,12 @@
+expression_matrix:
+  path: 
+  type: txt
+genes:
+  path: 
+  type: tsv
+barcodes:
+  path: 
+  type: tsv
+config_file:
+  path: 
+  type: txt

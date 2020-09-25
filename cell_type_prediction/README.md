@@ -56,5 +56,38 @@ Two output tables are produced, the first containing a list of all predicted lab
 4) Semantic similarity across predicted labels. Correctly predicted cells are likely to have labels that are highly similar among them (think high precision). 
 5) Aggregated score: again, scores  2-4 are averaged to produce combined score. Cells are sorted by this score. Those cells that have low score are less likely to be correctly predicted. 
 
+## Use case: run cell type predictions programmatically
+It is possible to run the workflow programmatically using the [galaxy-workflow-executor](https://github.com/ebi-gene-expression-group/galaxy-workflow-executor) package. For more detail, see the README on the provided repository. You will need [conda](https://docs.conda.io/en/latest/) to install it. Run the following commands: 
+
+```
+conda create -n <env_name> galaxy-workflow-executor
+conda activate <env_name>
+```
+
+The following steps will walk you through the procedure. Example data is provided in [galaxy_cli_use_case](galaxy_cli_use_case) directory.
+ - To generate the workflow parameters yaml file, run 
+ ```
+ generate_params_from_workflow.py -C galaxy_credentials.yaml \
+                            -G test_instance -o test \
+                            -W cell_types_prod_control_wf.ga
+ ```
+
+The above script will generate a [parameters file](galaxy_cli_use_case/cell_types_prod_control_wf_parameters.yaml).
+
+- You will need to import the expression [matrix](ftp://ftp.ebi.ac.uk/pub/databases/microarray/data/atlas/sc_experiments/E-GEOD-83139/E-GEOD-83139.aggregated_filtered_normalised_counts.mtx), [genes](ftp://ftp.ebi.ac.uk/pub/databases/microarray/data/atlas/sc_experiments/E-GEOD-83139/E-GEOD-83139.aggregated_filtered_normalised_counts.mtx_rows), and [barcodes](ftp://ftp.ebi.ac.uk/pub/databases/microarray/data/atlas/sc_experiments/E-GEOD-83139/E-GEOD-83139.aggregated_filtered_normalised_counts.mtx_cols) files and set the paths in the [inputs file](galaxy_cli_use_case/inputs.yaml)accordingly. `config_file` can be found [here](galaxy_cli_use_case/pancreas.yaml). 
+
+- Finally, run this: 
+```
+run_galaxy_workflow.py -C galaxy_credentials.yaml -H test_galaxy_cli -i inputs.yaml -W cell_types_prod_control_wf.yaml -P cell_types_prod_control_wf_parameters.yaml --parameters-yaml -G "ebi_cluster" --output-dir results/ 
+```
+Add the `--debug` parameter in case you would like to activate debugging mode. The above script will generate execution of the workflow on the Galaxy server, with the results sent into `results` directory. 
+
+
+
+
+
+
+
+
 
 
