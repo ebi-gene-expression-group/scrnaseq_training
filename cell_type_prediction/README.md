@@ -76,7 +76,7 @@ The above script will generate a [parameters file](galaxy_cli_use_case/cell_type
 
 - You will need to import the following files:
    
-   - **expression matrix**: ftp://ftp.ebi.ac.uk/pub/databases/microarray/data/atlas/sc_experiments/E-GEOD-83139/E-GEOD-83139.aggregated_filtered_normalised_counts.mtx)    
+   - **expression matrix**: ftp://ftp.ebi.ac.uk/pub/databases/microarray/data/atlas/sc_experiments/E-GEOD-83139/E-GEOD-83139.aggregated_filtered_normalised_counts.mtx    
    - **genes**: ftp://ftp.ebi.ac.uk/pub/databases/microarray/data/atlas/sc_experiments/E-GEOD-83139/E-GEOD-83139.aggregated_filtered_normalised_counts.mtx_rows
    
    - **barcodes**: ftp://ftp.ebi.ac.uk/pub/databases/microarray/data/atlas/sc_experiments/E-GEOD-83139/E-GEOD-83139.aggregated_filtered_normalised_counts.mtx_cols  
