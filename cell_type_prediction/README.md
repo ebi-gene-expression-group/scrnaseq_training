@@ -74,7 +74,15 @@ The following steps will walk you through the procedure. Example data is provide
 
 The above script will generate a [parameters file](galaxy_cli_use_case/cell_types_prod_control_wf_parameters.yaml).
 
-- You will need to import the expression [matrix](ftp://ftp.ebi.ac.uk/pub/databases/microarray/data/atlas/sc_experiments/E-GEOD-83139/E-GEOD-83139.aggregated_filtered_normalised_counts.mtx), [genes](ftp://ftp.ebi.ac.uk/pub/databases/microarray/data/atlas/sc_experiments/E-GEOD-83139/E-GEOD-83139.aggregated_filtered_normalised_counts.mtx_rows), and [barcodes](ftp://ftp.ebi.ac.uk/pub/databases/microarray/data/atlas/sc_experiments/E-GEOD-83139/E-GEOD-83139.aggregated_filtered_normalised_counts.mtx_cols) files and set the paths in the [inputs file](galaxy_cli_use_case/inputs.yaml)accordingly. `config_file` can be found [here](galaxy_cli_use_case/pancreas.yaml). 
+- You will need to import the following files:
+   
+   - **expression matrix**: ftp://ftp.ebi.ac.uk/pub/databases/microarray/data/atlas/sc_experiments/E-GEOD-83139/E-GEOD-83139.aggregated_filtered_normalised_counts.mtx)    
+   - **genes**: ftp://ftp.ebi.ac.uk/pub/databases/microarray/data/atlas/sc_experiments/E-GEOD-83139/E-GEOD-83139.aggregated_filtered_normalised_counts.mtx_rows
+   
+   - **barcodes**: ftp://ftp.ebi.ac.uk/pub/databases/microarray/data/atlas/sc_experiments/E-GEOD-83139/E-GEOD-83139.aggregated_filtered_normalised_counts.mtx_cols  
+   
+   
+   and set the paths in the [inputs file](galaxy_cli_use_case/inputs.yaml) accordingly. `config_file` can be found [here](galaxy_cli_use_case/pancreas.yaml). 
 
 - Finally, run this: 
 ```
