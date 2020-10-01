@@ -1,0 +1,37 @@
+barcodes: {}
+build_cell_ontology_mapping:
+    barcode_col_name: id
+    cell_label_col_name: inferred.cell.type
+    cell_ontology_col_name: cell.type.ontology
+    condensed_sdrf: 'true'
+cell_type_col_scmap_cell: 'inferred.cell.type'
+config_file: {}
+expression_matrix: {}
+genes: {}
+get_consensus_output:
+    include_sem_siml: 'true'
+    parallel: 'true'
+    sem_siml_metric: lin
+    sort_by_agg_score: 'true'
+    tmpdir: ''
+scmap_cell_classifiers:
+    get_tool_perf_table: 'false'
+    import_sdrf_files:
+        __current_case__: 1
+        condensed_sdrf: 'NULL'
+        get_sdrf: 'false'
+    tool: scmap-cell
+scmap_cluster_classifiers:
+    get_tool_perf_table: 'false'
+    import_sdrf_files:
+        __current_case__: 1
+        condensed_sdrf: 'NULL'
+        get_sdrf: 'false'
+    tool: scmap-cluster
+scpred_classifiers_sdrfs_tool_table:
+    get_tool_perf_table: 'true'
+    import_sdrf_files:
+        __current_case__: 0
+        condensed_sdrf: 'true'
+        get_sdrf: 'true'
+    tool: scpred

@@ -1,0 +1,16 @@
+sdrf:
+  - "sdrf.txt"
+condensed_sdrf:
+  - "condensed-sdrf.tsv"
+datasets:
+  - "E-ENAD-27"
+  - "E-MTAB-5061"
+  - "E-GEOD-81608"
+  - "E-GEOD-81547"
+
+scxa_classifiers_prefix:
+  - "ftp://ftp.ebi.ac.uk/pub/databases/microarray/data/atlas/sc_experiments_classifiers"
+scxa_experiments_prefix:
+  - "ftp://ftp.ebi.ac.uk/pub/databases/microarray/data/atlas/sc_experiments"
+tool_perf_table:
+  - "https://www.ebi.ac.uk/~a_solovyev/prod_testing_data/tool_perf_pvals.tsv"
