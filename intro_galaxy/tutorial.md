@@ -1,7 +1,7 @@
 # Introduction to Galaxy
 
 In this part we will learn what is Galaxy and what are the main mechanistics involved in using it. 
-We will start with [these slides](https://training.galaxyproject.org/training-material/topics/introduction/slides/introduction.html#1).
+We will start with [these slides](https://training.galaxyproject.org/training-material/topics/introduction/tutorials/galaxy-intro-short/slides.html#1).
 
 ## Using Galaxy
 
